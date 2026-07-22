@@ -159,11 +159,21 @@ export function DevisFormPage() {
 
   const removeLine = (idx: number) => setLines(lines.filter((_, i) => i !== idx))
 
+  function generateNumero() {
+    const now = new Date()
+    const ts = now.getFullYear().toString() +
+      String(now.getMonth() + 1).padStart(2, '0') +
+      String(now.getDate()).padStart(2, '0') +
+      String(now.getHours()).padStart(2, '0') +
+      String(now.getMinutes()).padStart(2, '0')
+    return 'DEV-' + ts + '-' + String(Math.floor(Math.random() * 1000)).padStart(3, '0')
+  }
+
   const handleSave = async () => {
     setSaving(true)
     try {
       const data = getValues()
-      const payload = {
+      const payload: Record<string, any> = {
         client_id: parseInt(data.client_id),
         service: 'aluminium',
         statut: data.statut || 'brouillon',
@@ -179,6 +189,7 @@ export function DevisFormPage() {
         await supabase.from('devis').update(payload).eq('id', devisId)
         await supabase.from('devis_lignes').delete().eq('devis_id', devisId)
       } else {
+        payload.numero = generateNumero()
         const { data: newDevis, error } = await supabase.from('devis').insert(payload).select('id').single()
         if (error) throw error
         devisId = newDevis.id
