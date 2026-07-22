@@ -40,7 +40,7 @@ export function Layout({ children }: LayoutProps) {
       <ToastContainer />
       <Sidebar />
       <div className="flex-1 flex flex-col min-w-0 lg:ml-64">
-        <header className="h-16 bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg border-b border-surface-200 dark:border-gray-700 sticky top-0 z-30 flex items-center px-4 lg:px-6 gap-3 shadow-warm-sm">
+        <header className="h-16 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-100 dark:border-gray-800 sticky top-0 z-30 flex items-center px-4 lg:px-6 gap-3 shadow-sm">
           <button type="button" onClick={toggleSidebar} className="p-2 rounded-xl lg:hidden hover:bg-surface-100 dark:hover:bg-gray-700 transition-colors">
             <Menu size={20} className="text-gray-500" />
           </button>

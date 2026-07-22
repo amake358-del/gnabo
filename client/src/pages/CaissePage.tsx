@@ -6,6 +6,7 @@ import { LoadingSpinner } from '../components/ui/LoadingSpinner'
 import { supabase } from '../services/supabase'
 import { formatCurrency, formatDateTime } from '../utils/format'
 import { DollarSign, TrendingUp, TrendingDown, Plus, X, Save, AlertTriangle, Trash2, Wallet } from 'lucide-react'
+import { ConfirmDialog } from '../components/ui/ConfirmDialog'
 import type { CaisseEntry } from '../types'
 
 const CATEGORIES = [
@@ -27,7 +28,8 @@ export function CaissePage() {
   const [showForm, setShowForm] = useState(false)
   const [form, setForm] = useState({ type: 'encaissement', categorie: 'vente', montant: '', description: '', mode_paiement: 'especes' })
   const [saving, setSaving] = useState(false)
-  const [error, setError] = useState('')
+    const [error, setError] = useState('')
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null)
 
   const load = async () => {
     setLoading(true)
@@ -70,12 +72,11 @@ export function CaissePage() {
   }
 
   const handleDelete = async (id: string) => {
-    if (!confirm('Supprimer cette entrée ?')) return
     try {
       const { error: err } = await supabase.from('caisse').delete().eq('id', id)
       if (err) throw err
       load()
-    } catch (err: any) { alert(err.message) }
+    } catch (err: any) { setError(err.message) }
   }
 
   return (
@@ -187,13 +188,25 @@ export function CaissePage() {
                     {e.type === 'encaissement' ? '+' : '-'}{formatCurrency(e.montant)}
                   </span>
                   <span className="text-xs text-gray-400">{formatDateTime(e.cree_le)}</span>
-                  <button type="button" onClick={() => handleDelete(e.id)} className="text-gray-300 hover:text-red-500 transition-colors"><Trash2 size={14} /></button>
+                  <button type="button" onClick={() => setDeleteConfirm(e.id)} className="text-gray-300 hover:text-red-500 transition-colors"><Trash2 size={14} /></button>
                 </div>
               </div>
             </Card>
           ))}
         </div>
       )}
+
+      <ConfirmDialog
+        open={deleteConfirm !== null}
+        onClose={() => setDeleteConfirm(null)}
+        onConfirm={async () => {
+          if (deleteConfirm) await handleDelete(deleteConfirm)
+          setDeleteConfirm(null)
+        }}
+        title="Supprimer l'entrée"
+        message="Êtes-vous sûr de vouloir supprimer cette entrée de caisse ? Cette action est irréversible."
+        confirmLabel="Supprimer"
+      />
     </div>
   )
 }

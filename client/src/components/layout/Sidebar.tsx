@@ -51,25 +51,25 @@ export function Sidebar() {
         />
       )}
       <aside
-        className={`fixed top-0 left-0 z-50 h-full w-64 bg-[#0F1A2E] dark:bg-gray-900 flex flex-col transform transition-all duration-300 ease-out lg:translate-x-0 ${
+        className={`fixed top-0 left-0 z-50 h-full w-64 bg-white dark:bg-gray-900 border-r border-gray-200/80 dark:border-gray-800 flex flex-col transform transition-all duration-300 ease-out lg:translate-x-0 ${
           sidebarOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'
         }`}
       >
-        <div className="flex items-center justify-between px-5 h-16 shrink-0">
+        <div className="flex items-center justify-between px-5 h-16 shrink-0 border-b border-gray-100 dark:border-gray-800/50">
             <div className="flex items-center gap-3 min-w-0">
-              <div className="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center shadow-inner shrink-0 overflow-hidden ring-2 ring-white/20">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center shrink-0 shadow-sm">
                 {current?.logo_url ? (
-                  <img src={current.logo_url} alt="" className="w-full h-full object-cover" />
+                  <img src={current.logo_url} alt="" className="w-full h-full object-cover rounded-xl" />
                 ) : (
                   <span className="text-white font-bold text-sm">{companyName?.charAt(0) || 'E'}</span>
                 )}
               </div>
               <div className="min-w-0">
-                <span className="text-white font-bold text-sm tracking-tight block leading-tight truncate">{companyName || 'Entreprise'}</span>
-                {current?.slogan && <span className="text-[11px] font-medium text-white/60 truncate block">{current.slogan}</span>}
+                <span className="text-gray-900 dark:text-white font-semibold text-sm tracking-tight block leading-tight truncate">{companyName || 'Entreprise'}</span>
+                {current?.slogan && <span className="text-[11px] font-medium text-gray-400 dark:text-gray-500 truncate block">{current.slogan}</span>}
               </div>
             </div>
-          <button type="button" className="lg:hidden p-1.5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-colors" onClick={() => setSidebarOpen(false)}>
+          <button type="button" className="lg:hidden p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onClick={() => setSidebarOpen(false)}>
             <X size={18} />
           </button>
         </div>
@@ -82,7 +82,7 @@ export function Sidebar() {
             return (
               <div key={sectionKey} className="space-y-0.5">
                 {label && (
-                  <p className="px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40">{label}</p>
+                  <p className="px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-gray-400 dark:text-gray-500">{label}</p>
                 )}
                 {items.map(item => (
                   <NavLink
@@ -93,17 +93,17 @@ export function Sidebar() {
                     className={({ isActive }) =>
                       `group relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
                         isActive
-                          ? 'bg-white/15 text-white shadow-sm'
-                          : 'text-white/60 hover:text-white hover:bg-white/10'
+                          ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300'
+                          : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/50'
                       }`
                     }
                   >
                     {({ isActive }) => (
                       <>
                         {isActive && (
-                          <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-5 bg-accent-400 rounded-full shadow-sm shadow-accent-500/30" />
+                          <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-5 bg-primary-500 rounded-full shadow-sm shadow-primary-500/30" />
                         )}
-                        <item.icon size={18} className={`shrink-0 transition-transform duration-150 ${isActive ? '' : 'group-hover:scale-110'}`} />
+                        <item.icon size={18} className={`shrink-0 transition-all duration-150 ${isActive ? 'text-primary-600 dark:text-primary-400' : 'text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-300'}`} />
                         <span>{item.label}</span>
                       </>
                     )}
@@ -114,9 +114,9 @@ export function Sidebar() {
           })}
         </nav>
 
-        <div className="shrink-0 p-3 border-t border-white/10">
+        <div className="shrink-0 p-3 border-t border-gray-100 dark:border-gray-800">
           <button type="button"             onClick={toggleDarkMode}
-            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium text-white/60 hover:text-white hover:bg-white/10 transition-all duration-150"
+            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-150"
           >
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
             <span>{darkMode ? 'Mode clair' : 'Mode sombre'}</span>

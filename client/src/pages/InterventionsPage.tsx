@@ -5,7 +5,7 @@ import { Badge } from '../components/ui/Badge'
 import { LoadingSpinner } from '../components/ui/LoadingSpinner'
 import { supabase } from '../services/supabase'
 import { formatDate } from '../utils/format'
-import { ClipboardList, Search, Plus, X, Save, AlertTriangle, CheckCircle, Eye } from 'lucide-react'
+import { ClipboardList, Search, Plus, X, Save, AlertTriangle, CheckCircle, Eye, Calendar, Clock, Pencil } from 'lucide-react'
 
 const STATUTS = ['planifiee', 'en_cours', 'terminee', 'annulee'] as const
 
@@ -251,8 +251,8 @@ export function InterventionsPage() {
                   {item.technicien && <p className="text-sm text-gray-500">Technicien: {item.technicien}</p>}
                   {item.equipe && <p className="text-sm text-gray-500">Équipe: {item.equipe}</p>}
                   <div className="flex gap-4 text-xs text-gray-400 mt-2">
-                    {item.date_prevue && <span>📅 {item.date_prevue}</span>}
-                    {item.heure_prevue && <span>⏰ {item.heure_prevue}</span>}
+                    {item.date_prevue && <span className="flex items-center gap-1"><Calendar size={14} className="text-gray-400" /> {item.date_prevue}</span>}
+                    {item.heure_prevue && <span className="flex items-center gap-1"><Clock size={14} className="text-gray-400" /> {item.heure_prevue}</span>}
                     {item.cree_le && <span>Créé le {formatDate(item.cree_le)}</span>}
                   </div>
                 </div>
@@ -265,7 +265,7 @@ export function InterventionsPage() {
                   <Button size="sm" variant="ghost" onClick={() => setExpanded(expanded === item.id ? null : item.id)}>
                     <Eye size={14} />
                   </Button>
-                  <Button size="sm" variant="ghost" onClick={() => openEdit(item)}>✏️</Button>
+                  <Button size="sm" variant="ghost" onClick={() => openEdit(item)}><Pencil size={14} /></Button>
                 </div>
               </div>
               {expanded === item.id && (

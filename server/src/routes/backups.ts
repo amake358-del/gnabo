@@ -54,13 +54,13 @@ router.post('/import', upload.single('file'), (req: Request, res: Response) => {
 })
 
 router.get('/export/:filename', (req: Request<{ filename: string }>, res: Response) => {
-  const filePath = path.join(backupsDir, req.params.filename)
+  const filePath = path.resolve(path.join(backupsDir, path.basename(req.params.filename)))
   if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'Fichier non trouvé' })
   res.download(filePath)
 })
 
 router.delete('/:filename', (req: Request<{ filename: string }>, res: Response) => {
-  const filePath = path.join(backupsDir, req.params.filename)
+  const filePath = path.resolve(path.join(backupsDir, path.basename(req.params.filename)))
   if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'Sauvegarde non trouvée' })
   fs.unlinkSync(filePath)
   auditLog({ utilisateur_id: req.session.userId, module: 'sauvegardes', action: 'suppression', nouvelle_valeur: JSON.stringify({ filename: req.params.filename }), adresse_ip: req.ip })

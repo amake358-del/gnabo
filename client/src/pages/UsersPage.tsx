@@ -8,6 +8,8 @@ import { formatDate } from '../utils/format'
 import { toast } from '../utils/notify'
 import { Trash2, ExternalLink } from 'lucide-react'
 
+const SUPABASE_PROJECT_URL = import.meta.env.VITE_SUPABASE_URL?.replace('https://', '').replace('.supabase.co', '') || ''
+
 interface ProfileUser {
   id: string
   nom: string
@@ -59,9 +61,11 @@ export function UsersPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">Utilisateurs</h1>
-        <Button onClick={() => window.open('https://supabase.com/project/nurtpoplxxpvxifwoynm/auth/users', '_blank')}>
-          <ExternalLink size={16} /><span className="hidden lg:inline">Gérer dans Supabase</span>
-        </Button>
+        {SUPABASE_PROJECT_URL && (
+          <Button onClick={() => window.open(`https://supabase.com/dashboard/project/${SUPABASE_PROJECT_URL}/auth/users`, '_blank')}>
+            <ExternalLink size={16} /><span className="hidden lg:inline">Gérer dans Supabase</span>
+          </Button>
+        )}
       </div>
       <Card>
         <Table columns={columns} data={users} loading={loading} emptyMessage="Aucun utilisateur" />

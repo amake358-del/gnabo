@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
 import session from 'express-session';
 import { initDb } from './db';
 import { authRouter } from './routes/auth';
@@ -24,14 +25,15 @@ import { errorHandler } from './middleware/error-handler';
 const app = express();
 const PORT = 3001;
 
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+app.use(cors({ origin: process.env.CORS_ORIGIN || 'http://localhost:5173', credentials: true }));
+app.use(helmet());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(session({
-  secret: 'gnabo-session-secret-change-in-production',
+  secret: process.env.SESSION_SECRET || 'gnabo-session-secret-change-in-production',
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false, httpOnly: true, maxAge: 24 * 60 * 60 * 1000 },
+  cookie: { secure: process.env.NODE_ENV === 'production', httpOnly: true, sameSite: 'lax', maxAge: 24 * 60 * 60 * 1000 },
 }));
 
 app.use('/api/v1/auth', authRouter);

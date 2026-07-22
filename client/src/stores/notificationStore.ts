@@ -32,7 +32,7 @@ export const useNotificationStore = create<NotificationState>((set, get) => ({
       if (data) {
         set({ notifications: data, unread: data.filter(n => !n.read).length })
       }
-    } catch {}
+    } catch (err) { console.error('Erreur chargement notifications:', err) }
   },
   markRead: async (id) => {
     await supabase.from('notifications').update({ read: true }).eq('id', id)

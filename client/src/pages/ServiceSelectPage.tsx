@@ -4,9 +4,9 @@ import { useEntrepriseStore } from '../stores/entrepriseStore'
 import { Building2, ChevronRight, Loader2, Cpu, Wrench, Zap } from 'lucide-react'
 
 const services = [
-  { id: 'aluminium', name: 'Aluminium & Inox', icon: 'aluminium', description: 'Fabrication et pose', primary_color: '#A8B5B8' },
-  { id: 'metallique', name: 'Métallique', icon: 'metal', description: 'Serrurerie et construction', primary_color: '#7F8C8D' },
-  { id: 'electronique', name: 'Électronique', icon: 'cpu', description: 'Réparation et maintenance', primary_color: '#2980B9' },
+  { id: 'aluminium', name: 'Aluminium & Inox', icon: 'aluminium', description: 'Fabrication et pose sur mesure', primary_color: '#6B8A9E', gradient: 'from-[#6B8A9E] to-[#3D5A6E]' },
+  { id: 'metallique', name: 'Métallique', icon: 'metal', description: 'Serrurerie et constructions métalliques', primary_color: '#7F8C8D', gradient: 'from-[#7F8C8D] to-[#4A5455]' },
+  { id: 'electronique', name: 'Électronique', icon: 'cpu', description: 'Réparation et maintenance électronique', primary_color: '#0EA5E9', gradient: 'from-[#0EA5E9] to-[#0369A1]' },
 ]
 
 const serviceIcons: Record<string, typeof Building2> = {
@@ -66,8 +66,7 @@ export function ServiceSelectPage() {
                 className="w-full group flex items-center gap-5 p-5 bg-white dark:bg-gray-800/80 rounded-2xl border border-gray-100 dark:border-gray-700/50 shadow-sm hover:shadow-lg hover:border-primary-200 dark:hover:border-primary-700 transition-all duration-200 text-left"
               >
                 <div
-                  className="w-14 h-14 rounded-xl flex items-center justify-center text-white shadow-sm shrink-0"
-                  style={{ backgroundColor: s.primary_color }}
+                  className={`w-14 h-14 rounded-xl bg-gradient-to-br ${s.gradient} flex items-center justify-center text-white shadow-sm shrink-0`}
                 >
                   <Icon size={26} />
                 </div>

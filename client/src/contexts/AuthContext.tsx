@@ -26,7 +26,7 @@ async function fetchProfile(userId: string, email: string): Promise<AppUser> {
 
   if (!profile && !error) {
     const nom = email.split('@')[0];
-    const role = email === 'pdg@gnabo.com' ? 'pdg' : 'admin';
+    const role = 'admin';
     await supabase.from('profiles').insert({ id: userId, nom, role });
     return { id: userId, email, nom, role };
   }

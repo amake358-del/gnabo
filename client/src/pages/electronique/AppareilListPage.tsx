@@ -25,7 +25,7 @@ export function AppareilListPage() {
   const [appareils, setAppareils] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
-  const [statutFilter, _setStatutFilter] = useState('')
+  const [statutFilter] = useState('')
 
   const fetchList = async () => {
     setLoading(true)
@@ -48,7 +48,7 @@ export function AppareilListPage() {
           panne_declaree: a.description_defaut,
         }
       }))
-    } catch { /* ignore */ } finally { setLoading(false) }
+    } catch (err) { console.error('Erreur chargement appareils:', err) } finally { setLoading(false) }
   }
 
   useEffect(() => { fetchList() }, [statutFilter])

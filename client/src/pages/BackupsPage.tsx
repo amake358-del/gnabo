@@ -2,6 +2,8 @@ import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
 import { Database, ExternalLink } from 'lucide-react'
 
+const SUPABASE_PROJECT_URL = import.meta.env.VITE_SUPABASE_URL?.replace('https://', '').replace('.supabase.co', '') || ''
+
 export function BackupsPage() {
   return (
     <div className="max-w-lg mx-auto space-y-6">
@@ -19,9 +21,11 @@ export function BackupsPage() {
           Votre base de données PostgreSQL est automatiquement sauvegardée chaque jour par Supabase.
           Les sauvegardes sont conservées pendant 7 jours (plan gratuit) ou plus selon votre abonnement.
         </p>
-        <Button onClick={() => window.open('https://supabase.com/dashboard/project/nurtpoplxxpvxifwoynm/database/backups', '_blank')}>
-          <ExternalLink size={16} /> Voir les sauvegardes Supabase
-        </Button>
+        {SUPABASE_PROJECT_URL && (
+          <Button onClick={() => window.open(`https://supabase.com/dashboard/project/${SUPABASE_PROJECT_URL}/database/backups`, '_blank')}>
+            <ExternalLink size={16} /> Voir les sauvegardes Supabase
+          </Button>
+        )}
       </Card>
     </div>
   )
