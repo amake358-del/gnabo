@@ -25,18 +25,23 @@ ALTER TABLE parametres ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Parametres all" ON parametres;
 CREATE POLICY "Parametres all" ON parametres FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
 
--- 4. Politiques INSERT manquantes sur les tables métier
---    Les FOR ALL USING existantes couvrent SELECT/DELETE mais pas INSERT
+-- 4. Remplacer les politiques FOR ALL USING (entreprise_id = auth.uid()) 
+--    sur les tables métier — le INSERT ne définit pas entreprise_id,
+--    donc la condition entreprise_id = auth.uid() empêche de voir les nouvelles lignes.
+--    On utilise auth.role() = 'authenticated' à la place.
+DROP POLICY IF EXISTS "Les utilisateurs voient leurs données" ON clients;
 DROP POLICY IF EXISTS "Clients insert" ON clients;
-CREATE POLICY "Clients insert" ON clients FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+CREATE POLICY "Clients all" ON clients FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Les utilisateurs voient leurs appareils" ON appareils;
 DROP POLICY IF EXISTS "Appareils insert" ON appareils;
-CREATE POLICY "Appareils insert" ON appareils FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+CREATE POLICY "Appareils all" ON appareils FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Les utilisateurs voient leurs devis" ON devis;
 DROP POLICY IF EXISTS "Devis insert" ON devis;
-CREATE POLICY "Devis insert" ON devis FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+CREATE POLICY "Devis all" ON devis FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
 DROP POLICY IF EXISTS "Factures insert" ON factures;
-CREATE POLICY "Factures insert" ON factures FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+CREATE POLICY "Factures all" ON factures FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
 DROP POLICY IF EXISTS "Interventions insert" ON interventions;
-CREATE POLICY "Interventions insert" ON interventions FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+CREATE POLICY "Interventions all" ON interventions FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
 
 -- 5. Politiques pour catalog_types et catalog_modeles (utilisés par CataloguePage)
 ALTER TABLE catalog_types ENABLE ROW LEVEL SECURITY;
