@@ -5,6 +5,7 @@ import { Button } from '../../components/ui/Button'
 import { Input } from '../../components/ui/Input'
 import { LoadingSpinner } from '../../components/ui/LoadingSpinner'
 import { QrCode, Search, Download, Printer } from 'lucide-react'
+import QRCodeLib from 'qrcode'
 
 export function QrCodesPage() {
   const navigate = useNavigate()
@@ -32,8 +33,10 @@ export function QrCodesPage() {
     if (qrData[id]) { setQrData(prev => { const n = { ...prev }; delete n[id]; return n }); return }
     const app = appareils.find(a => a.id === id)
     if (!app) return
-    const qr_data_url = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(app.uid_visible)}`
-    setQrData(prev => ({ ...prev, [id]: qr_data_url }))
+    try {
+      const qr_data_url = await QRCodeLib.toDataURL(app.uid_visible, { width: 150, margin: 1 })
+      setQrData(prev => ({ ...prev, [id]: qr_data_url }))
+    } catch (err) { console.error('Erreur generation QR:', err) }
   }
 
   return (
@@ -74,14 +77,17 @@ export function QrCodesPage() {
                     <Button variant="ghost" size="sm" onClick={() => handleGenerate(app.id)}>
                       <QrCode size={16} /> {qrData[app.id] ? 'Masquer' : 'QR Code'}
                     </Button>
-                    <Button variant="ghost" size="sm" onClick={() => window.open(`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(app.uid_visible)}`, '_blank')}>
+                    <Button variant="ghost" size="sm" onClick={async () => {
+                      const url = await QRCodeLib.toDataURL(app.uid_visible, { width: 200, margin: 1 })
+                      window.open(url, '_blank')
+                    }}>
                       <Printer size={16} />
                     </Button>
                   </div>
                 </div>
                 {qrData[app.id] && (
                   <div className="flex justify-center py-2">
-                    <img src={qrData[app.id]} alt={`QR ${app.uid_interne}`} className="w-32 h-32" />
+                    <img src={qrData[app.id]} alt={`QR ${app.uid_visible}`} className="w-32 h-32" />
                   </div>
                 )}
               </div>

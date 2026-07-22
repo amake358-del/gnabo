@@ -4,6 +4,7 @@ import { Button } from '../../components/ui/Button'
 import { Select } from '../../components/ui/Select'
 import { LoadingSpinner } from '../../components/ui/LoadingSpinner'
 import { Download, Loader2 } from 'lucide-react'
+import QRCode from 'qrcode'
 
 const LAYOUT_OPTIONS = [
   { value: '10', label: '10 étiquettes (2×5)' },
@@ -37,7 +38,7 @@ export function EtiquettesPage() {
     try {
       const qrPromises = selected.map(async id => {
         const app = appareils.find(a => a.id === id)
-        const qr_data_url = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(app!.uid_visible)}`
+        const qr_data_url = await QRCode.toDataURL(app!.uid_visible, { width: 100, margin: 0 })
         return { app, qr_data_url }
       })
       const items = await Promise.all(qrPromises)
@@ -47,15 +48,6 @@ export function EtiquettesPage() {
       const cols = pp >= 20 ? 3 : 2
       const rows = Math.ceil(pp / cols)
       const m = 10, w = (190 - (cols - 1) * 4) / cols, h = (277 - (rows - 1) * 4) / rows
-      const loadImg = (url: string): Promise<string> => {
-        return new Promise(resolve => {
-          const img = new Image()
-          img.crossOrigin = 'anonymous'
-          img.onload = () => { const c = document.createElement('canvas'); c.width = 100; c.height = 100; const ctx = c.getContext('2d')!; ctx.drawImage(img, 0, 0, 100, 100); resolve(c.toDataURL()) }
-          img.onerror = () => resolve('')
-          img.src = url
-        })
-      }
       const usedItems = items.slice(0, pp)
       for (let i = 0; i < usedItems.length; i++) {
         const { app, qr_data_url } = usedItems[i]
@@ -67,9 +59,8 @@ export function EtiquettesPage() {
         doc.text(`${app!.marque} ${app!.modele}`.substring(0, 22), x + 2, y + 9)
         if (qr_data_url) {
           try {
-            const dataUrl = await loadImg(qr_data_url)
-            if (dataUrl) doc.addImage(dataUrl, 'PNG', x + w / 2 - 10, y + 12, 20, 20)
-          } catch (e) { console.error('Erreur chargement QR:', e) }
+            doc.addImage(qr_data_url, 'PNG', x + w / 2 - 10, y + 12, 20, 20)
+          } catch (e) { console.error('Erreur insertion QR dans PDF:', e) }
         }
         doc.rect(x, y, w, h)
       }
