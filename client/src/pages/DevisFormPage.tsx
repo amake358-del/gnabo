@@ -299,8 +299,8 @@ export function DevisFormPage() {
                   <tr className="border-b border-gray-200 dark:border-gray-700">
                     <th className="px-3 py-2 text-left">Désignation</th>
                     <th className="px-3 py-2 text-right">Qté</th>
-                    <th className="px-3 py-2 text-right">L (mm)</th>
-                    <th className="px-3 py-2 text-right">H (mm)</th>
+                    <th className="px-3 py-2 text-right">L (cm)</th>
+                    <th className="px-3 py-2 text-right">H (cm)</th>
                     <th className="px-3 py-2 text-right">Surface</th>
                     <th className="px-3 py-2 text-right">Prix m²</th>
                     <th className="px-3 py-2 text-right">Total</th>
@@ -459,8 +459,8 @@ export function DevisFormPage() {
                       <input className="input text-sm" placeholder="Désignation" value={line.designation} onChange={e => updateLine(i, 'designation', e.target.value)} />
                       <div className="grid grid-cols-3 gap-2">
                         <input className="input text-sm" type="number" placeholder="Qté" value={line.quantite || ''} onChange={e => updateLine(i, 'quantite', parseFloat(e.target.value) || 0)} />
-                        <input className="input text-sm" type="number" placeholder="L (mm)" value={line.largeur || ''} onChange={e => updateLine(i, 'largeur', parseFloat(e.target.value) || 0)} />
-                        <input className="input text-sm" type="number" placeholder="H (mm)" value={line.hauteur || ''} onChange={e => updateLine(i, 'hauteur', parseFloat(e.target.value) || 0)} />
+                        <input className="input text-sm" type="number" placeholder="L (cm)" value={line.largeur || ''} onChange={e => updateLine(i, 'largeur', parseFloat(e.target.value) || 0)} />
+                        <input className="input text-sm" type="number" placeholder="H (cm)" value={line.hauteur || ''} onChange={e => updateLine(i, 'hauteur', parseFloat(e.target.value) || 0)} />
                       </div>
                       <div className="grid grid-cols-3 gap-2">
                         <input className="input text-sm" type="number" step="any" placeholder="m²" value={line.surface || ''} onChange={e => updateLine(i, 'surface', parseFloat(e.target.value) || 0)} />
@@ -478,8 +478,8 @@ export function DevisFormPage() {
                       <div className="flex-1 grid grid-cols-12 gap-2">
                         <input className="input col-span-4 text-sm" placeholder="Désignation" value={line.designation} onChange={e => updateLine(i, 'designation', e.target.value)} />
                         <input className="input col-span-1 text-sm" type="number" placeholder="Qté" value={line.quantite || ''} onChange={e => updateLine(i, 'quantite', parseFloat(e.target.value) || 0)} />
-                        <input className="input col-span-1 text-sm" type="number" placeholder="L (mm)" value={line.largeur || ''} onChange={e => updateLine(i, 'largeur', parseFloat(e.target.value) || 0)} />
-                        <input className="input col-span-1 text-sm" type="number" placeholder="H (mm)" value={line.hauteur || ''} onChange={e => updateLine(i, 'hauteur', parseFloat(e.target.value) || 0)} />
+                        <input className="input col-span-1 text-sm" type="number" placeholder="L (cm)" value={line.largeur || ''} onChange={e => updateLine(i, 'largeur', parseFloat(e.target.value) || 0)} />
+                        <input className="input col-span-1 text-sm" type="number" placeholder="H (cm)" value={line.hauteur || ''} onChange={e => updateLine(i, 'hauteur', parseFloat(e.target.value) || 0)} />
                         <input className="input col-span-1 text-sm" type="number" step="any" placeholder="m²" value={line.surface || ''} onChange={e => updateLine(i, 'surface', parseFloat(e.target.value) || 0)} />
                         <input className="input col-span-1 text-sm" type="number" step="0.000001" placeholder="FG/m²" value={line.prix_m2 || ''} onChange={e => updateLine(i, 'prix_m2', parseFloat(e.target.value) || 0)} />
                         <div className="col-span-1 flex items-center text-sm font-medium">{formatCurrency(line.total)}</div>
@@ -521,8 +521,8 @@ export function DevisFormPage() {
                   <tr className="border-b border-gray-200 dark:border-gray-700">
                     <th className="px-3 py-2 text-left">Désignation</th>
                     <th className="px-3 py-2 text-right">Qté</th>
-                    <th className="px-3 py-2 text-right">L (mm)</th>
-                    <th className="px-3 py-2 text-right">H (mm)</th>
+                    <th className="px-3 py-2 text-right">L (cm)</th>
+                    <th className="px-3 py-2 text-right">H (cm)</th>
                     <th className="px-3 py-2 text-right">Surface</th>
                     <th className="px-3 py-2 text-right">Prix m²</th>
                     <th className="px-3 py-2 text-right">Total</th>
