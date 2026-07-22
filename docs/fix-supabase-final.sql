@@ -31,16 +31,21 @@ CREATE POLICY "Parametres all" ON parametres FOR ALL USING (auth.role() = 'authe
 --    On utilise auth.role() = 'authenticated' à la place.
 DROP POLICY IF EXISTS "Les utilisateurs voient leurs données" ON clients;
 DROP POLICY IF EXISTS "Clients insert" ON clients;
+DROP POLICY IF EXISTS "Clients all" ON clients;
 CREATE POLICY "Clients all" ON clients FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
 DROP POLICY IF EXISTS "Les utilisateurs voient leurs appareils" ON appareils;
 DROP POLICY IF EXISTS "Appareils insert" ON appareils;
+DROP POLICY IF EXISTS "Appareils all" ON appareils;
 CREATE POLICY "Appareils all" ON appareils FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
 DROP POLICY IF EXISTS "Les utilisateurs voient leurs devis" ON devis;
 DROP POLICY IF EXISTS "Devis insert" ON devis;
+DROP POLICY IF EXISTS "Devis all" ON devis;
 CREATE POLICY "Devis all" ON devis FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
 DROP POLICY IF EXISTS "Factures insert" ON factures;
+DROP POLICY IF EXISTS "Factures all" ON factures;
 CREATE POLICY "Factures all" ON factures FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
 DROP POLICY IF EXISTS "Interventions insert" ON interventions;
+DROP POLICY IF EXISTS "Interventions all" ON interventions;
 CREATE POLICY "Interventions all" ON interventions FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
 
 -- 5. Politiques pour catalog_types et catalog_modeles (utilisés par CataloguePage)
