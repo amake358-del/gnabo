@@ -1,5 +1,6 @@
 import { useState, useEffect, FormEvent } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { supabase } from '../services/supabase';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { AlertCircle, Building2 } from 'lucide-react';
@@ -16,14 +17,15 @@ export default function LoginPage() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch('/api/v1/settings')
-        const json = await res.json()
-        if (json?.data) {
-          setCompanyName(json.data.entreprise_nom || '')
-          setLogoUrl(json.data.logo || json.data.entreprise_logo || json.data.logo_url || '')
+        const { data } = await supabase.from('parametres').select('cle, valeur')
+        if (data) {
+          const cfg: Record<string, string> = {}
+          for (const r of data) cfg[r.cle] = r.valeur
+          setCompanyName(cfg.entreprise_nom || '')
+          setLogoUrl(cfg.entreprise_logo || '')
         }
       } catch {
-        // API non disponible
+        // Paramètres non disponibles
       }
     })()
   }, [])
