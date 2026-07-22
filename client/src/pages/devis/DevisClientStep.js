@@ -1,0 +1,9 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { Card } from '../../components/ui/Card';
+import { Button } from '../../components/ui/Button';
+import { Plus, Search } from 'lucide-react';
+import { useDevisForm } from './DevisFormLayout';
+export function DevisClientStep() {
+    const { setValue, getValues, goToStep, filteredClients, clientSearch, setClientSearch, setClientModalOpen } = useDevisForm();
+    return (_jsxs(Card, { children: [_jsxs("div", { className: "flex items-center justify-between mb-4", children: [_jsx("h2", { className: "text-lg font-semibold", children: "Choisir ou cr\u00E9er un client" }), _jsxs(Button, { variant: "secondary", size: "sm", onClick: () => setClientModalOpen(true), children: [_jsx(Plus, { size: 14 }), " Nouveau client"] })] }), _jsxs("div", { className: "relative mb-4", children: [_jsx(Search, { size: 18, className: "absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" }), _jsx("input", { className: "input pl-10", placeholder: "Rechercher un client...", value: clientSearch, onChange: e => setClientSearch(e.target.value) })] }), _jsxs("div", { className: "max-h-64 overflow-y-auto space-y-2", children: [filteredClients.map(c => (_jsxs("button", { type: "button", onClick: () => { setValue('client_id', c.id); goToStep(3); }, className: `w-full text-left p-3 rounded-lg border transition-all ${getValues().client_id === c.id ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20' : 'border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800'}`, children: [_jsx("p", { className: "font-medium", children: c.company ? `${c.company} (${c.nom} ${c.prenom || ''})` : `${c.nom} ${c.prenom || ''}` }), _jsxs("p", { className: "text-sm text-gray-500", children: [c.email, " ", c.telephone ? `| ${c.telephone}` : ''] })] }, c.id))), filteredClients.length === 0 && _jsx("p", { className: "text-center text-gray-500 py-4", children: "Aucun client trouv\u00E9" })] })] }));
+}

@@ -1,0 +1,33 @@
+{
+  "name": "gnabo-multi-services-erp",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "build": "cd client && npm run build && cd ../server && npm run build",
+    "lint": "cd client && npm run lint && cd ../server && npm run lint",
+    "test": "concurrently --kill-others --success first \"npm run dev:server\" \"npm run dev:client\" && npx playwright test --project=chromium",
+    "test:ui": "npx playwright test --ui",
+    "test:report": "npx playwright show-report test-reports/html",
+    "test:mobile": "npx playwright test --project=mobile-iphone-14 --project=mobile-android-small",
+    "test:tablet": "npx playwright test --project=tablet-portrait --project=tablet-landscape",
+    "test:desktop": "npx playwright test --project=chromium --project=firefox --project=webkit",
+    "test:pwa": "npx playwright test --project=pwa-chrome --project=pwa-mobile",
+    "test:visual": "npx playwright test --project=visual-chrome --project=visual-mobile",
+    "test:all": "npx playwright test --project=chromium --project=firefox --project=webkit --project=mobile-iphone-14 --project=mobile-android-small --project=tablet-portrait --project=tablet-landscape --project=pwa-chrome --project=visual-chrome --project=a11y",
+    "test:e2e": "concurrently --kill-others --success first \"npm run dev:server\" \"npm run dev:client\" && npx playwright test",
+    "test:functional": "npx playwright test --project=chromium --grep \"functional\"",
+    "test:responsive": "npx playwright test --project=mobile-iphone-14 --project=tablet-portrait --project=desktop-small",
+    "test:accessibility": "npx playwright test --project=a11y",
+    "test:performance": "npx playwright test --project=performance"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "concurrently": "^9.1.0"
+  },
+  "dependencies": {
+    "playwright": "^1.61.1"
+  }
+}

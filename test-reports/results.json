@@ -1,0 +1,3695 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\HP\\Desktop\\GD\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--list",
+      "--project=chromium"
+    ],
+    "configFile": "C:\\Users\\HP\\Desktop\\GD\\playwright.config.ts",
+    "rootDir": "C:/Users/HP/Desktop/GD/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "C:\\Users\\HP\\Desktop\\GD\\tests\\global-setup.ts",
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/functional/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/functional/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/functional/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "mobile-iphone-se",
+        "name": "mobile-iphone-se",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/responsive/**",
+          "**/mobile/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "mobile-iphone-14",
+        "name": "mobile-iphone-14",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/responsive/**",
+          "**/mobile/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "mobile-android-small",
+        "name": "mobile-android-small",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/responsive/**",
+          "**/mobile/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "mobile-android-large",
+        "name": "mobile-android-large",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/responsive/**",
+          "**/mobile/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "tablet-portrait",
+        "name": "tablet-portrait",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/responsive/**",
+          "**/tablet/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "tablet-landscape",
+        "name": "tablet-landscape",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/responsive/**",
+          "**/tablet/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "tablet-large",
+        "name": "tablet-large",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/responsive/**",
+          "**/tablet/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "tablet-pro",
+        "name": "tablet-pro",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/responsive/**",
+          "**/tablet/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "desktop-small",
+        "name": "desktop-small",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/responsive/**",
+          "**/desktop/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "desktop-medium",
+        "name": "desktop-medium",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/responsive/**",
+          "**/desktop/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "desktop-large",
+        "name": "desktop-large",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/responsive/**",
+          "**/desktop/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "pwa-chrome",
+        "name": "pwa-chrome",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/pwa/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "pwa-mobile",
+        "name": "pwa-mobile",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/pwa/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "visual-chrome",
+        "name": "visual-chrome",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/visual/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "visual-mobile",
+        "name": "visual-mobile",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/visual/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "a11y",
+        "name": "a11y",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/accessibility/**"
+        ],
+        "timeout": 90000
+      },
+      {
+        "outputDir": "C:/Users/HP/Desktop/GD/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "performance",
+        "name": "performance",
+        "testDir": "C:/Users/HP/Desktop/GD/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/performance/**"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "test-reports/html",
+          "open": "never"
+        }
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-reports/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "functional\\01-entreprise-selection.spec.ts",
+      "file": "functional/01-entreprise-selection.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Sélection d'entreprise",
+          "file": "functional/01-entreprise-selection.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "affiche la page de sélection avec les entreprises disponibles",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a664a00bace39e7f7e8e-f0fb3ad6ae16b271fb20",
+              "file": "functional/01-entreprise-selection.spec.ts",
+              "line": 8,
+              "column": 7
+            },
+            {
+              "title": "sélectionne une entreprise et navigue vers le tableau de bord",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a664a00bace39e7f7e8e-eec527d1bdaa2d6b656a",
+              "file": "functional/01-entreprise-selection.spec.ts",
+              "line": 16,
+              "column": 7
+            },
+            {
+              "title": "persiste le choix dans localStorage",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a664a00bace39e7f7e8e-c3facec891775adc1d47",
+              "file": "functional/01-entreprise-selection.spec.ts",
+              "line": 25,
+              "column": 7
+            },
+            {
+              "title": "loader disparaît après chargement des données",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a664a00bace39e7f7e8e-12c90c46b00bf0b81021",
+              "file": "functional/01-entreprise-selection.spec.ts",
+              "line": 32,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\02-navigation.spec.ts",
+      "file": "functional/02-navigation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Navigation entre les pages",
+          "file": "functional/02-navigation.spec.ts",
+          "line": 23,
+          "column": 6,
+          "specs": [
+            {
+              "title": "charge la page Tableau de bord (/) sans erreur console",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd1e2c4b6e1337a30c28-93309736748fd653e291",
+              "file": "functional/02-navigation.spec.ts",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "charge la page Clients (/clients) sans erreur console",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd1e2c4b6e1337a30c28-6eaa676cdb5a95e1e792",
+              "file": "functional/02-navigation.spec.ts",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "charge la page Catalogue (/catalogue) sans erreur console",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd1e2c4b6e1337a30c28-2883b51d3ed3b698810a",
+              "file": "functional/02-navigation.spec.ts",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "charge la page Modèles (/modeles) sans erreur console",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd1e2c4b6e1337a30c28-3113d9a71c80992d9adb",
+              "file": "functional/02-navigation.spec.ts",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "charge la page Devis (/devis) sans erreur console",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd1e2c4b6e1337a30c28-a165c5b2905bae5b3638",
+              "file": "functional/02-navigation.spec.ts",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "charge la page Appareils (/electronique/appareils) sans erreur console",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd1e2c4b6e1337a30c28-5180165749a58980ebc1",
+              "file": "functional/02-navigation.spec.ts",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "charge la page Réception (/electronique/reception) sans erreur console",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd1e2c4b6e1337a30c28-a020941b7e4447e48515",
+              "file": "functional/02-navigation.spec.ts",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "charge la page QR Codes (/electronique/qr-codes) sans erreur console",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd1e2c4b6e1337a30c28-fba87dd9c7c17e862bce",
+              "file": "functional/02-navigation.spec.ts",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "charge la page Étiquettes (/electronique/etiquettes) sans erreur console",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd1e2c4b6e1337a30c28-01445608b8fd9fd5e3aa",
+              "file": "functional/02-navigation.spec.ts",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "charge la page Stock (/stocks) sans erreur console",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd1e2c4b6e1337a30c28-9b19dab6b688c846d9be",
+              "file": "functional/02-navigation.spec.ts",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "charge la page Interventions (/interventions) sans erreur console",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd1e2c4b6e1337a30c28-6995ed2219fa96ca0fa3",
+              "file": "functional/02-navigation.spec.ts",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "charge la page Caisse (/caisse) sans erreur console",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd1e2c4b6e1337a30c28-16cf7727d4d461be84c8",
+              "file": "functional/02-navigation.spec.ts",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "charge la page Paramètres (/parametres) sans erreur console",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd1e2c4b6e1337a30c28-06b3f0310c20451b92a2",
+              "file": "functional/02-navigation.spec.ts",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "charge la page Utilisateurs (/utilisateurs) sans erreur console",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd1e2c4b6e1337a30c28-fcdb8dc1d856a25cf673",
+              "file": "functional/02-navigation.spec.ts",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "charge la page Historique (/historique) sans erreur console",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd1e2c4b6e1337a30c28-0a30708145165ecff5d8",
+              "file": "functional/02-navigation.spec.ts",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "charge la page Sauvegardes (/sauvegardes) sans erreur console",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd1e2c4b6e1337a30c28-b01f69bac2fdd1aefa8e",
+              "file": "functional/02-navigation.spec.ts",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "redirige vers select-entreprise sans localStorage",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd1e2c4b6e1337a30c28-6e4d275afdc813cae040",
+              "file": "functional/02-navigation.spec.ts",
+              "line": 45,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\03-dashboard.spec.ts",
+      "file": "functional/03-dashboard.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Tableau de bord",
+          "file": "functional/03-dashboard.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "affiche les cartes de statistiques",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0d0bc603285d36f9d9b7-79dc82c4d61177bbeea4",
+              "file": "functional/03-dashboard.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "affiche le graphique d'évolution mensuelle",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0d0bc603285d36f9d9b7-15edbc455af44b4609fe",
+              "file": "functional/03-dashboard.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "affiche la section des derniers devis",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0d0bc603285d36f9d9b7-f72001b9ac087a0aae9d",
+              "file": "functional/03-dashboard.spec.ts",
+              "line": 21,
+              "column": 7
+            },
+            {
+              "title": "affiche la répartition par statut",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0d0bc603285d36f9d9b7-a652a02ff054f1f6664c",
+              "file": "functional/03-dashboard.spec.ts",
+              "line": 25,
+              "column": 7
+            },
+            {
+              "title": "cliquer sur un devis récent navigue vers la page du devis",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0d0bc603285d36f9d9b7-afbf9463106d9dd3e68d",
+              "file": "functional/03-dashboard.spec.ts",
+              "line": 29,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\04-clients.spec.ts",
+      "file": "functional/04-clients.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Gestion des clients",
+          "file": "functional/04-clients.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "affiche la page des clients",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "8dda67530e0e39f6b88f-9632fe414a661e744e8b",
+              "file": "functional/04-clients.spec.ts",
+              "line": 11,
+              "column": 7
+            },
+            {
+              "title": "ouvre le modal de création",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "8dda67530e0e39f6b88f-a8bacd05d9dff5ff8145",
+              "file": "functional/04-clients.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "crée un nouveau client",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "8dda67530e0e39f6b88f-23d861aec4acf7f8eb12",
+              "file": "functional/04-clients.spec.ts",
+              "line": 21,
+              "column": 7
+            },
+            {
+              "title": "cherche un client",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "8dda67530e0e39f6b88f-984a68be2021eba8b8ba",
+              "file": "functional/04-clients.spec.ts",
+              "line": 32,
+              "column": 7
+            },
+            {
+              "title": "ouvre le modal de modification",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "8dda67530e0e39f6b88f-d3775106e62d0a612fd8",
+              "file": "functional/04-clients.spec.ts",
+              "line": 41,
+              "column": 7
+            },
+            {
+              "title": "supprime un client",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "8dda67530e0e39f6b88f-b9eb1fe2b83c1893e640",
+              "file": "functional/04-clients.spec.ts",
+              "line": 50,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\05-catalogue-types.spec.ts",
+      "file": "functional/05-catalogue-types.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Gestion du catalogue (types)",
+          "file": "functional/05-catalogue-types.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "affiche la page catalogue",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "88c7da88eb5db6d5a76c-3d55190e45fca8ab32d0",
+              "file": "functional/05-catalogue-types.spec.ts",
+              "line": 11,
+              "column": 7
+            },
+            {
+              "title": "crée un nouveau type",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "88c7da88eb5db6d5a76c-c7c2fdb402af3d3197c1",
+              "file": "functional/05-catalogue-types.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "modifie un type existant",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "88c7da88eb5db6d5a76c-89c0a58a90acfc9f2fa7",
+              "file": "functional/05-catalogue-types.spec.ts",
+              "line": 24,
+              "column": 7
+            },
+            {
+              "title": "supprime un type",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "88c7da88eb5db6d5a76c-6d9c138df0083bfc61e9",
+              "file": "functional/05-catalogue-types.spec.ts",
+              "line": 36,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\06-modeles.spec.ts",
+      "file": "functional/06-modeles.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Gestion des modèles",
+          "file": "functional/06-modeles.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "affiche la page des modèles",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "e2dd7b8b4084e4463f27-ee42eba125a00aa7bcca",
+              "file": "functional/06-modeles.spec.ts",
+              "line": 11,
+              "column": 7
+            },
+            {
+              "title": "crée un nouveau modèle",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "e2dd7b8b4084e4463f27-77d17fc50863211d5183",
+              "file": "functional/06-modeles.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "filtre les modèles par type",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "e2dd7b8b4084e4463f27-f3fb583535f7c0d1fc00",
+              "file": "functional/06-modeles.spec.ts",
+              "line": 30,
+              "column": 7
+            },
+            {
+              "title": "supprime un modèle",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "e2dd7b8b4084e4463f27-7cb91724114c793f771c",
+              "file": "functional/06-modeles.spec.ts",
+              "line": 41,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\07-devis-crud.spec.ts",
+      "file": "functional/07-devis-crud.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "CRUD Devis",
+          "file": "functional/07-devis-crud.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "affiche la liste des devis",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "898d8558e74a7c31fe3e-9b7f2b940d64a137622b",
+              "file": "functional/07-devis-crud.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "filtre les devis par statut",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "898d8558e74a7c31fe3e-4a105fdda1f7435d8744",
+              "file": "functional/07-devis-crud.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "cherche un devis",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "898d8558e74a7c31fe3e-c06dcdaf2751db904d18",
+              "file": "functional/07-devis-crud.spec.ts",
+              "line": 27,
+              "column": 7
+            },
+            {
+              "title": "supprime un devis",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "898d8558e74a7c31fe3e-19a861a8303b5d825fdc",
+              "file": "functional/07-devis-crud.spec.ts",
+              "line": 37,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\08-devis-form.spec.ts",
+      "file": "functional/08-devis-form.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Formulaire de création devis (stepper)",
+          "file": "functional/08-devis-form.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "affiche le stepper avec la première étape (type)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5c456a6190699d3c0330-a5152223f3c94a5a8286",
+              "file": "functional/08-devis-form.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "parcourt le stepper jusqu'à l'aperçu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5c456a6190699d3c0330-db66faf9c31c2902c4b2",
+              "file": "functional/08-devis-form.spec.ts",
+              "line": 24,
+              "column": 7
+            },
+            {
+              "title": "bouton Annuler fonctionne",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "5c456a6190699d3c0330-aaf95b7b1752bece5a0d",
+              "file": "functional/08-devis-form.spec.ts",
+              "line": 50,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\09-settings.spec.ts",
+      "file": "functional/09-settings.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Paramètres entreprise",
+          "file": "functional/09-settings.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "affiche la page des paramètres",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "66903d7bc93a8aec9299-6000f9f87fe7118299a6",
+              "file": "functional/09-settings.spec.ts",
+              "line": 11,
+              "column": 7
+            },
+            {
+              "title": "affiche les champs de configuration",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "66903d7bc93a8aec9299-e9343ab50a28e2dcdbab",
+              "file": "functional/09-settings.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "modifie le nom de l'entreprise",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "66903d7bc93a8aec9299-892988033c7f7c9dc40d",
+              "file": "functional/09-settings.spec.ts",
+              "line": 21,
+              "column": 7
+            },
+            {
+              "title": "affiche la section des logos et signatures",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "66903d7bc93a8aec9299-5204353d18aa78942c8f",
+              "file": "functional/09-settings.spec.ts",
+              "line": 34,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\10-users.spec.ts",
+      "file": "functional/10-users.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Gestion des utilisateurs",
+          "file": "functional/10-users.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "affiche la page des utilisateurs",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "82e20a131c6813e917d8-e0e58e05b8ad2fcdd84e",
+              "file": "functional/10-users.spec.ts",
+              "line": 11,
+              "column": 7
+            },
+            {
+              "title": "crée un nouvel utilisateur",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "82e20a131c6813e917d8-7e74603793bf6950285c",
+              "file": "functional/10-users.spec.ts",
+              "line": 15,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\11-history.spec.ts",
+      "file": "functional/11-history.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Historique des actions",
+          "file": "functional/11-history.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "affiche la page d'historique",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "3be1011f07c5e5262dac-abd32bcb1f92d867d90e",
+              "file": "functional/11-history.spec.ts",
+              "line": 11,
+              "column": 7
+            },
+            {
+              "title": "affiche les entrées du journal d'actions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "3be1011f07c5e5262dac-ac61cb561fb6364dd8b0",
+              "file": "functional/11-history.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "affiche les détails de chaque action",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "3be1011f07c5e5262dac-6e62e86cbf375eb4553e",
+              "file": "functional/11-history.spec.ts",
+              "line": 21,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\12-backups.spec.ts",
+      "file": "functional/12-backups.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Sauvegardes",
+          "file": "functional/12-backups.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "affiche la page des sauvegardes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "208c2245b09d0a2dcf93-7ba320d9e982b5cee45a",
+              "file": "functional/12-backups.spec.ts",
+              "line": 11,
+              "column": 7
+            },
+            {
+              "title": "crée une nouvelle sauvegarde",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "208c2245b09d0a2dcf93-a02ff21f990683a58ea1",
+              "file": "functional/12-backups.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "liste les sauvegardes existantes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "208c2245b09d0a2dcf93-8a5bfdc0b70684755c2a",
+              "file": "functional/12-backups.spec.ts",
+              "line": 24,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\13-search.spec.ts",
+      "file": "functional/13-search.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Recherche",
+          "file": "functional/13-search.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "recherche des clients",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "35fa4cbb84ff74129196-7f93b6c2d53f70adfcb2",
+              "file": "functional/13-search.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "recherche des devis",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "35fa4cbb84ff74129196-c453c6f9ef8d91bfc1ca",
+              "file": "functional/13-search.spec.ts",
+              "line": 18,
+              "column": 7
+            },
+            {
+              "title": "recherche des modèles",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "35fa4cbb84ff74129196-2155dc652f26767d9144",
+              "file": "functional/13-search.spec.ts",
+              "line": 27,
+              "column": 7
+            },
+            {
+              "title": "filtre les devis par statut",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "35fa4cbb84ff74129196-b789ed3c222fc38f39f0",
+              "file": "functional/13-search.spec.ts",
+              "line": 37,
+              "column": 7
+            },
+            {
+              "title": "filtre les modèles par type",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "35fa4cbb84ff74129196-65f73a391518ca624720",
+              "file": "functional/13-search.spec.ts",
+              "line": 47,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\14-pdf.spec.ts",
+      "file": "functional/14-pdf.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Génération PDF",
+          "file": "functional/14-pdf.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "bouton PDF visible sur l'aperçu d'un devis",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b561644e46b3ee544fae-bf73b5300c3e037dd2e7",
+              "file": "functional/14-pdf.spec.ts",
+              "line": 11,
+              "column": 7
+            },
+            {
+              "title": "page de détail d'un devis accessible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b561644e46b3ee544fae-9793e90672f325f9c102",
+              "file": "functional/14-pdf.spec.ts",
+              "line": 23,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\15-devis-duplication.spec.ts",
+      "file": "functional/15-devis-duplication.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Duplication de devis",
+          "file": "functional/15-devis-duplication.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "navigation vers page devis liste",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "efb9074da09abaf66d86-4ca4cde28be77546a299",
+              "file": "functional/15-devis-duplication.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "duplique un devis existant via le formulaire pré-rempli",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "efb9074da09abaf66d86-f81f4ed616a82078841b",
+              "file": "functional/15-devis-duplication.spec.ts",
+              "line": 18,
+              "column": 7
+            },
+            {
+              "title": "navigation vers formulaire nouveau devis",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "efb9074da09abaf66d86-b7c187e2fbde7049cb67",
+              "file": "functional/15-devis-duplication.spec.ts",
+              "line": 27,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\16-devis-modification.spec.ts",
+      "file": "functional/16-devis-modification.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Modification de devis",
+          "file": "functional/16-devis-modification.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "navigation vers page devis",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0e993dbcf6b60cf3cdaf-f66c96eb91e8b1b7ae48",
+              "file": "functional/16-devis-modification.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "change le statut d'un devis depuis la liste",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0e993dbcf6b60cf3cdaf-a8c6bba6b88467e112fa",
+              "file": "functional/16-devis-modification.spec.ts",
+              "line": 22,
+              "column": 7
+            },
+            {
+              "title": "affiche l'aperçu d'un devis",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0e993dbcf6b60cf3cdaf-4e2689a318f51cd6d306",
+              "file": "functional/16-devis-modification.spec.ts",
+              "line": 34,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\17-calculations.spec.ts",
+      "file": "functional/17-calculations.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Calcul automatique des surfaces et montants",
+          "file": "functional/17-calculations.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "vérifie la formule surface = largeur * hauteur / 10000",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c67970cc3d28d9df94da-260b89ae09456812b860",
+              "file": "functional/17-calculations.spec.ts",
+              "line": 10,
+              "column": 7
+            },
+            {
+              "title": "vérifie la formule total = surface * quantite * prix_m2",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c67970cc3d28d9df94da-3aa0cfa90ab22f573cdf",
+              "file": "functional/17-calculations.spec.ts",
+              "line": 17,
+              "column": 7
+            },
+            {
+              "title": "calcul via API côté serveur",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c67970cc3d28d9df94da-cf4407924cb3ee7f9703",
+              "file": "functional/17-calculations.spec.ts",
+              "line": 25,
+              "column": 7
+            },
+            {
+              "title": "vérifie les colonnes surface et total dans l'aperçu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c67970cc3d28d9df94da-fe44c3d8d65a46a44bc2",
+              "file": "functional/17-calculations.spec.ts",
+              "line": 39,
+              "column": 7
+            },
+            {
+              "title": "navigation vers formulaire devis sans erreur console",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "c67970cc3d28d9df94da-f9c57ec3883f840aa93a",
+              "file": "functional/17-calculations.spec.ts",
+              "line": 51,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\18-company-switch.spec.ts",
+      "file": "functional/18-company-switch.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Changement d'entreprise",
+          "file": "functional/18-company-switch.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "affiche le sélecteur d'entreprise",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd78399642ef8f3ba3b2-5a8642b9250da2de54c3",
+              "file": "functional/18-company-switch.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "contient un lien pour changer d'entreprise dans le header",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd78399642ef8f3ba3b2-9d248e04ee815faaeb96",
+              "file": "functional/18-company-switch.spec.ts",
+              "line": 17,
+              "column": 7
+            },
+            {
+              "title": "la page select-entreprise est accessible depuis la navigation",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dd78399642ef8f3ba3b2-542443f3e50e8e4c714d",
+              "file": "functional/18-company-switch.spec.ts",
+              "line": 29,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\19-print.spec.ts",
+      "file": "functional/19-print.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Génération PDF et impression",
+          "file": "functional/19-print.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "bouton Générer le PDF visible sur l'aperçu devis",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d4aa1e67708e1eca3569-825b4e1390e0a742f8c3",
+              "file": "functional/19-print.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "bouton Télécharger PDF visible après génération",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d4aa1e67708e1eca3569-f40435df35447fdb6792",
+              "file": "functional/19-print.spec.ts",
+              "line": 20,
+              "column": 7
+            },
+            {
+              "title": "bouton PDF dans le stepper étape aperçu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d4aa1e67708e1eca3569-3b7e88ca31c2f9f9f5ba",
+              "file": "functional/19-print.spec.ts",
+              "line": 38,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\20-electronique-reception.spec.ts",
+      "file": "functional/20-electronique-reception.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Électronique - Réception appareil",
+          "file": "functional/20-electronique-reception.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "affiche la page de réception",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ebba8a92e74635873a8b-5b316f669dda57109d4f",
+              "file": "functional/20-electronique-reception.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "affiche le champ de scan QR Code",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ebba8a92e74635873a8b-7cf303d333fd0d7cfe28",
+              "file": "functional/20-electronique-reception.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "le scan manuel affiche le formulaire pour code inconnu",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ebba8a92e74635873a8b-b02ebcb289bafe608ba5",
+              "file": "functional/20-electronique-reception.spec.ts",
+              "line": 22,
+              "column": 7
+            },
+            {
+              "title": "le formulaire contient tous les champs requis",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ebba8a92e74635873a8b-733a266453d0762ab38b",
+              "file": "functional/20-electronique-reception.spec.ts",
+              "line": 35,
+              "column": 7
+            },
+            {
+              "title": "bouton Annuler retourne au scan",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ebba8a92e74635873a8b-08e80cfb7e15a3f303bc",
+              "file": "functional/20-electronique-reception.spec.ts",
+              "line": 51,
+              "column": 7
+            },
+            {
+              "title": "bouton scanner caméra visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ebba8a92e74635873a8b-87f7a34189c6245f9296",
+              "file": "functional/20-electronique-reception.spec.ts",
+              "line": 67,
+              "column": 7
+            },
+            {
+              "title": "page appareils liste accessible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "ebba8a92e74635873a8b-da07fc7b52e3227fa9f9",
+              "file": "functional/20-electronique-reception.spec.ts",
+              "line": 74,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\21-electronique-diagnostic.spec.ts",
+      "file": "functional/21-electronique-diagnostic.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Électronique - Diagnostic",
+          "file": "functional/21-electronique-diagnostic.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "navigation vers le diagnostic depuis la page appareils",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "9ae021d1b03d181f0c8c-677e4a634199fe0e96cf",
+              "file": "functional/21-electronique-diagnostic.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "page diagnostic contient le formulaire",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "9ae021d1b03d181f0c8c-b877e27d9a4178f81433",
+              "file": "functional/21-electronique-diagnostic.spec.ts",
+              "line": 25,
+              "column": 7
+            },
+            {
+              "title": "bouton retour vers la fiche appareil",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "9ae021d1b03d181f0c8c-ba2991fac5e3ba885343",
+              "file": "functional/21-electronique-diagnostic.spec.ts",
+              "line": 47,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\22-electronique-reparation.spec.ts",
+      "file": "functional/22-electronique-reparation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Électronique - Réparation",
+          "file": "functional/22-electronique-reparation.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "navigation vers la réparation depuis la fiche appareil",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "bc1267850dc0c2d53bb4-334ec62274b297fce7ae",
+              "file": "functional/22-electronique-reparation.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "page réparation contient les sélecteurs de statut",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "bc1267850dc0c2d53bb4-59e37e1b7b0e085853af",
+              "file": "functional/22-electronique-reparation.spec.ts",
+              "line": 25,
+              "column": 7
+            },
+            {
+              "title": "champs réparation visibles",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "bc1267850dc0c2d53bb4-b6d2784720cbf22255f3",
+              "file": "functional/22-electronique-reparation.spec.ts",
+              "line": 48,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\23-electronique-facturation.spec.ts",
+      "file": "functional/23-electronique-facturation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Électronique - Facturation (Devis, Factures, Paiements)",
+          "file": "functional/23-electronique-facturation.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "page devis électronique contient titre et éléments",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "60ba12d85a6ba0aa73f9-c284c7ef578ca2dad35f",
+              "file": "functional/23-electronique-facturation.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "boutons facturation visibles sur fiche appareil",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "60ba12d85a6ba0aa73f9-2632017a8f1e059037ce",
+              "file": "functional/23-electronique-facturation.spec.ts",
+              "line": 21,
+              "column": 7
+            },
+            {
+              "title": "navigation vers nouveau devis électronique",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "60ba12d85a6ba0aa73f9-23b9e330555ac7a16885",
+              "file": "functional/23-electronique-facturation.spec.ts",
+              "line": 38,
+              "column": 7
+            },
+            {
+              "title": "navigation vers paiement électronique",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "60ba12d85a6ba0aa73f9-d39279f6c17f01b197c9",
+              "file": "functional/23-electronique-facturation.spec.ts",
+              "line": 55,
+              "column": 7
+            },
+            {
+              "title": "message vide affiché quand aucun document",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "60ba12d85a6ba0aa73f9-99a38607d023ceb43044",
+              "file": "functional/23-electronique-facturation.spec.ts",
+              "line": 72,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\24-electronique-qr-codes.spec.ts",
+      "file": "functional/24-electronique-qr-codes.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Électronique - QR Codes & Étiquettes",
+          "file": "functional/24-electronique-qr-codes.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "page QR codes accessible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "4619370db644f2dfeb6c-9d534f3f0561696cee1e",
+              "file": "functional/24-electronique-qr-codes.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "page QR codes contient recherche",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "4619370db644f2dfeb6c-a5aaf5da5cfe20bdd6e2",
+              "file": "functional/24-electronique-qr-codes.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "bouton Étiquettes visible sur page QR codes",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "4619370db644f2dfeb6c-e3f495355aed05a4c5da",
+              "file": "functional/24-electronique-qr-codes.spec.ts",
+              "line": 22,
+              "column": 7
+            },
+            {
+              "title": "page étiquettes accessible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "4619370db644f2dfeb6c-f647b88eb7f63fa052de",
+              "file": "functional/24-electronique-qr-codes.spec.ts",
+              "line": 29,
+              "column": 7
+            },
+            {
+              "title": "page étiquettes contient sélecteur disposition",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "4619370db644f2dfeb6c-c0996223e014d354379c",
+              "file": "functional/24-electronique-qr-codes.spec.ts",
+              "line": 35,
+              "column": 7
+            },
+            {
+              "title": "bouton Générer PDF désactivé sans sélection",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "4619370db644f2dfeb6c-7f1a354658637216d9a3",
+              "file": "functional/24-electronique-qr-codes.spec.ts",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "page étiquettes liste les appareils avec checkbox",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "4619370db644f2dfeb6c-d64a05226f62ec0668e4",
+              "file": "functional/24-electronique-qr-codes.spec.ts",
+              "line": 54,
+              "column": 7
+            },
+            {
+              "title": "navigation sidebar QR Codes fonctionnelle",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "4619370db644f2dfeb6c-be8f58d4aff399b013da",
+              "file": "functional/24-electronique-qr-codes.spec.ts",
+              "line": 65,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\25-stocks.spec.ts",
+      "file": "functional/25-stocks.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Gestion de stock",
+          "file": "functional/25-stocks.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "affiche la page stock",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "70fcc1f2b14cc07438bd-7a5be161811985eb93fd",
+              "file": "functional/25-stocks.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "contient les filtres de recherche et service",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "70fcc1f2b14cc07438bd-e43ab77cd8bb7bc1f4df",
+              "file": "functional/25-stocks.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "bouton alertes visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "70fcc1f2b14cc07438bd-98ae1480c233779a02f2",
+              "file": "functional/25-stocks.spec.ts",
+              "line": 27,
+              "column": 7
+            },
+            {
+              "title": "tableau des articles visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "70fcc1f2b14cc07438bd-cda74b20eb43691f68c1",
+              "file": "functional/25-stocks.spec.ts",
+              "line": 34,
+              "column": 7
+            },
+            {
+              "title": "en-têtes du tableau stock complets",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "70fcc1f2b14cc07438bd-1c255282b9a9fdf2a2e9",
+              "file": "functional/25-stocks.spec.ts",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "ligne article affiche les informations",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "70fcc1f2b14cc07438bd-fd9a9a2c8685c74632ed",
+              "file": "functional/25-stocks.spec.ts",
+              "line": 56,
+              "column": 7
+            },
+            {
+              "title": "boutons mouvement et historique visibles par ligne",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "70fcc1f2b14cc07438bd-f145f3e325a8a18442b1",
+              "file": "functional/25-stocks.spec.ts",
+              "line": 70,
+              "column": 7
+            },
+            {
+              "title": "navigation stock detail accessible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "70fcc1f2b14cc07438bd-744f6b9bd44494609d89",
+              "file": "functional/25-stocks.spec.ts",
+              "line": 80,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\26-caisse.spec.ts",
+      "file": "functional/26-caisse.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Caisse",
+          "file": "functional/26-caisse.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "affiche la page caisse",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "37ad1aee8f2fdbd3a8d3-a234992b6c7973f7d58b",
+              "file": "functional/26-caisse.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "affiche les cartes de résumé (encaissements, dépenses, solde)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "37ad1aee8f2fdbd3a8d3-467d7e8cf285e6ad29bc",
+              "file": "functional/26-caisse.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "bouton Nouvelle entrée visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "37ad1aee8f2fdbd3a8d3-37faf5cc98ec8df477bb",
+              "file": "functional/26-caisse.spec.ts",
+              "line": 25,
+              "column": 7
+            },
+            {
+              "title": "filtres date et type visibles",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "37ad1aee8f2fdbd3a8d3-6e37d51315d808f8f786",
+              "file": "functional/26-caisse.spec.ts",
+              "line": 32,
+              "column": 7
+            },
+            {
+              "title": "modal nouvelle entrée avec tous les champs",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "37ad1aee8f2fdbd3a8d3-316458b1d9824834d4bb",
+              "file": "functional/26-caisse.spec.ts",
+              "line": 42,
+              "column": 7
+            },
+            {
+              "title": "bouton Enregistrer visible dans le formulaire",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "37ad1aee8f2fdbd3a8d3-63724bdb46b0603c3137",
+              "file": "functional/26-caisse.spec.ts",
+              "line": 56,
+              "column": 7
+            },
+            {
+              "title": "liste des entrées affichée",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "37ad1aee8f2fdbd3a8d3-1a54987eb263e0b092d4",
+              "file": "functional/26-caisse.spec.ts",
+              "line": 65,
+              "column": 7
+            },
+            {
+              "title": "filtre type fonctionne",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "37ad1aee8f2fdbd3a8d3-66df5d0ce8bd81a1d171",
+              "file": "functional/26-caisse.spec.ts",
+              "line": 75,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\27-interventions.spec.ts",
+      "file": "functional/27-interventions.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Interventions",
+          "file": "functional/27-interventions.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "affiche la page interventions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b6d4c5c3c53b254ab640-26dcabd0dd5429ce7e59",
+              "file": "functional/27-interventions.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "bouton Nouvelle intervention visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b6d4c5c3c53b254ab640-e5e03483afd88295af74",
+              "file": "functional/27-interventions.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "filtre par statut visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b6d4c5c3c53b254ab640-bb4a5ae8274cc6d0d556",
+              "file": "functional/27-interventions.spec.ts",
+              "line": 22,
+              "column": 7
+            },
+            {
+              "title": "barre de recherche visible",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b6d4c5c3c53b254ab640-b910b9bf8e4d8e5c10ec",
+              "file": "functional/27-interventions.spec.ts",
+              "line": 31,
+              "column": 7
+            },
+            {
+              "title": "modal nouvelle intervention avec champs",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b6d4c5c3c53b254ab640-6005559faeea9a9a4611",
+              "file": "functional/27-interventions.spec.ts",
+              "line": 38,
+              "column": 7
+            },
+            {
+              "title": "liste des interventions affichée avec statuts",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b6d4c5c3c53b254ab640-e80986f9fd1859b0ad0c",
+              "file": "functional/27-interventions.spec.ts",
+              "line": 52,
+              "column": 7
+            },
+            {
+              "title": "interventions affichent le badge de statut",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b6d4c5c3c53b254ab640-cc90c89bcefd5b0d2e0d",
+              "file": "functional/27-interventions.spec.ts",
+              "line": 62,
+              "column": 7
+            },
+            {
+              "title": "filtre par statut fonctionne",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b6d4c5c3c53b254ab640-63a513d4c8a0ba767d59",
+              "file": "functional/27-interventions.spec.ts",
+              "line": 75,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "functional\\28-auth-permissions.spec.ts",
+      "file": "functional/28-auth-permissions.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Authentification et permissions",
+          "file": "functional/28-auth-permissions.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "page de login accessible sans authentification",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "95a3f19f790b6eb47636-38ec78b9ec16a42fe736",
+              "file": "functional/28-auth-permissions.spec.ts",
+              "line": 5,
+              "column": 7
+            },
+            {
+              "title": "page login affiche le logo entreprise",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "95a3f19f790b6eb47636-687e2ea801eb245815f0",
+              "file": "functional/28-auth-permissions.spec.ts",
+              "line": 13,
+              "column": 7
+            },
+            {
+              "title": "login contient bouton de connexion",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "95a3f19f790b6eb47636-cc71ad27357af5df4802",
+              "file": "functional/28-auth-permissions.spec.ts",
+              "line": 20,
+              "column": 7
+            },
+            {
+              "title": "redirection vers login sans authentification",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "95a3f19f790b6eb47636-4fb4f80b368ea6da5429",
+              "file": "functional/28-auth-permissions.spec.ts",
+              "line": 27,
+              "column": 7
+            },
+            {
+              "title": "page paramètres accessible après authentification",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "95a3f19f790b6eb47636-8cb12954bd706fca97d7",
+              "file": "functional/28-auth-permissions.spec.ts",
+              "line": 37,
+              "column": 7
+            },
+            {
+              "title": "page utilisateurs accessible après authentification",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "95a3f19f790b6eb47636-19e224ea8cafb222864f",
+              "file": "functional/28-auth-permissions.spec.ts",
+              "line": 44,
+              "column": 7
+            },
+            {
+              "title": "page sauvegardes accessible après authentification",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "95a3f19f790b6eb47636-2b88e6b7e2752ceb4770",
+              "file": "functional/28-auth-permissions.spec.ts",
+              "line": 51,
+              "column": 7
+            },
+            {
+              "title": "page historique accessible après authentification",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "95a3f19f790b6eb47636-8d035a1d6c4c23063b4b",
+              "file": "functional/28-auth-permissions.spec.ts",
+              "line": 58,
+              "column": 7
+            },
+            {
+              "title": "bouton déconnexion visible dans le header",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "95a3f19f790b6eb47636-e645af266bc93ee8db63",
+              "file": "functional/28-auth-permissions.spec.ts",
+              "line": 65,
+              "column": 7
+            },
+            {
+              "title": "nom utilisateur affiché dans le header",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "95a3f19f790b6eb47636-a38d7d7920bc335038cb",
+              "file": "functional/28-auth-permissions.spec.ts",
+              "line": 73,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-07-22T02:13:07.833Z",
+    "duration": 381.68100000000004,
+    "expected": 0,
+    "skipped": 143,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
