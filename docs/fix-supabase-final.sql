@@ -38,7 +38,41 @@ CREATE POLICY "Factures insert" ON factures FOR INSERT WITH CHECK (auth.role() =
 DROP POLICY IF EXISTS "Interventions insert" ON interventions;
 CREATE POLICY "Interventions insert" ON interventions FOR INSERT WITH CHECK (auth.role() = 'authenticated');
 
--- 5. Insérer les paramètres par défaut si la table est vide
+-- 5. Politiques pour catalog_types et catalog_modeles (utilisés par CataloguePage)
+ALTER TABLE catalog_types ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Catalog types all" ON catalog_types;
+CREATE POLICY "Catalog types all" ON catalog_types FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
+ALTER TABLE catalog_modeles ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Catalog modeles all" ON catalog_modeles;
+CREATE POLICY "Catalog modeles all" ON catalog_modeles FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
+
+-- 6. Politiques pour toutes les autres tables (paiements, caisse, etc.)
+ALTER TABLE paiements ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Paiements all" ON paiements;
+CREATE POLICY "Paiements all" ON paiements FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
+ALTER TABLE caisse ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Caisse all" ON caisse;
+CREATE POLICY "Caisse all" ON caisse FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
+ALTER TABLE categories_stock ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Categories stock all" ON categories_stock;
+CREATE POLICY "Categories stock all" ON categories_stock FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
+ALTER TABLE articles_stock ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Articles stock all" ON articles_stock;
+CREATE POLICY "Articles stock all" ON articles_stock FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
+ALTER TABLE mouvements_stock ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Mouvements stock all" ON mouvements_stock;
+CREATE POLICY "Mouvements stock all" ON mouvements_stock FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
+ALTER TABLE garanties ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Garanties all" ON garanties;
+CREATE POLICY "Garanties all" ON garanties FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
+ALTER TABLE audit_log ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Audit log all" ON audit_log;
+CREATE POLICY "Audit log all" ON audit_log FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
+ALTER TABLE devis_lignes ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Devis lignes all" ON devis_lignes;
+CREATE POLICY "Devis lignes all" ON devis_lignes FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated');
+
+-- 7. Insérer les paramètres par défaut si la table est vide
 INSERT INTO parametres (cle, valeur)
 SELECT * FROM (VALUES
   ('entreprise_nom', 'Gnabo Multi-Services'),
