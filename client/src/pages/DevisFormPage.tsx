@@ -173,8 +173,13 @@ export function DevisFormPage() {
     setSaving(true)
     try {
       const data = getValues()
+      if (!data.client_id) { toast('Veuillez sélectionner un client', 'error'); setSaving(false); return }
+
+      const cid = parseInt(String(data.client_id))
+      if (isNaN(cid)) { toast('Client invalide', 'error'); setSaving(false); return }
+
       const payload: Record<string, any> = {
-        client_id: parseInt(data.client_id),
+        client_id: cid,
         service: 'aluminium',
         statut: data.statut || 'brouillon',
         montant_ht: stats.total_ht,
@@ -186,12 +191,13 @@ export function DevisFormPage() {
 
       let devisId: number | string | undefined = id
       if (isEdit && devisId) {
-        await supabase.from('devis').update(payload).eq('id', devisId)
+        const { error: uErr } = await supabase.from('devis').update(payload).eq('id', devisId)
+        if (uErr) throw uErr
         await supabase.from('devis_lignes').delete().eq('devis_id', devisId)
       } else {
         payload.numero = generateNumero()
-        const { data: newDevis, error } = await supabase.from('devis').insert(payload).select('id').single()
-        if (error) throw error
+        const { data: newDevis, error: insErr } = await supabase.from('devis').insert(payload).select('id').single()
+        if (insErr) throw insErr
         devisId = newDevis.id
       }
 
@@ -211,7 +217,10 @@ export function DevisFormPage() {
       }
 
       navigate('/devis')
-    } catch (err: any) { toast(err.message, 'error') }
+    } catch (err: any) {
+      console.error('Save devis error:', err)
+      toast(err.message || 'Erreur lors de la sauvegarde', 'error')
+    }
     finally { setSaving(false) }
   }
 
