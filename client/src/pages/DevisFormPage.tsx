@@ -125,9 +125,8 @@ export function DevisFormPage() {
     const after_remise = total_ht - remise
     const total_ttc = after_remise + (after_remise * tva / 100)
     const total_final = total_ttc + transport + pose
-    const defaultPct = 30
-    const acompte = (v.acompte && v.acompte > 0) ? v.acompte : Math.round(total_final * defaultPct / 100 * 100) / 100
-    const acomptePct = total_final > 0 ? Math.round(acompte / total_final * 100) : defaultPct
+    const acompte = v.acompte || 0
+    const acomptePct = total_final > 0 ? Math.round(acompte / total_final * 100) : 0
     const reste = Math.round((total_final - acompte) * 100) / 100
     setStats({
       total_ht: Math.round(total_ht * 100) / 100,
@@ -349,12 +348,12 @@ export function DevisFormPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <Input label="TVA (%)" type="number" step="0.1" disabled {...register('tva', { valueAsNumber: true })} />
-            <Input label="Acompte (FG)" type="number" step="0.01" disabled {...register('acompte', { valueAsNumber: true })} />
+            <Input label="Avance (FG)" type="number" step="0.01" disabled {...register('acompte', { valueAsNumber: true })} />
           </div>
           <div className="border-t border-gray-200 dark:border-gray-700 pt-4 space-y-2">
             <div className="flex justify-between text-sm"><span>Total HT</span><span className="font-medium">{formatCurrency(stats.total_ht)}</span></div>
             <div className="flex justify-between text-sm"><span>Total TTC</span><span className="font-bold text-lg text-primary-600">{formatCurrency(stats.total_ttc)}</span></div>
-            <div className="flex justify-between text-sm"><span>Acompte ({stats.acomptePct}%)</span><span>{formatCurrency(stats.acompte)}</span></div>
+            <div className="flex justify-between text-sm"><span>Avance ({stats.acomptePct}%)</span><span>{formatCurrency(stats.acompte)}</span></div>
             <div className="flex justify-between text-sm"><span>Reste à payer</span><span className="font-medium">{formatCurrency(stats.reste)}</span></div>
           </div>
           <div className="mt-4">
@@ -574,7 +573,7 @@ export function DevisFormPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <Input label="TVA (%)" type="number" step="0.1" {...register('tva', { valueAsNumber: true })} />
-            <Input label="Acompte (FG)" type="number" step="0.01" {...register('acompte', { valueAsNumber: true })} />
+            <Input label="Avance (FG)" type="number" step="0.01" {...register('acompte', { valueAsNumber: true })} />
             <Select label="Statut" options={[
               { value: 'brouillon', label: 'Brouillon' },
               { value: 'envoye', label: 'Envoyé' },
@@ -585,7 +584,7 @@ export function DevisFormPage() {
           <div className="border-t border-gray-200 dark:border-gray-700 pt-4 space-y-2">
             <div className="flex justify-between text-sm"><span>Total HT</span><span className="font-medium">{formatCurrency(stats.total_ht)}</span></div>
             <div className="flex justify-between text-sm"><span>Total TTC</span><span className="font-bold text-lg text-primary-600">{formatCurrency(stats.total_ttc)}</span></div>
-            <div className="flex justify-between text-sm"><span>Acompte ({stats.acomptePct}%)</span><span>{formatCurrency(stats.acompte)}</span></div>
+            <div className="flex justify-between text-sm"><span>Avance ({stats.acomptePct}%)</span><span>{formatCurrency(stats.acompte)}</span></div>
             <div className="flex justify-between text-sm"><span>Reste à payer</span><span className="font-medium">{formatCurrency(stats.reste)}</span></div>
           </div>
           <div className="mt-4">
