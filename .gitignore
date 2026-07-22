@@ -1,8 +1,41 @@
+# Dépendances
 node_modules/
+
+# Build
 dist/
+*.tsbuildinfo
+client/src/**/*.js
+client/src/**/*.js.map
+
+# Env
 .env
 .env.local
+
+# Base SQLite
 *.db
+*.db-shm
+*.db-wal
+
+# Logs
 *.log
+
+# OS
 .DS_Store
 Thumbs.db
+
+# Certs (dev)
+client/certs/
+
+# Uploads
+server/data/uploads/
+server/data/*.db*
+
+# Tests
+test-results/
+test-reports/
+
+# Inspect / debug
+inspect*.mjs
+verify.mjs
+screenshot*.mjs
+audit.mjs
