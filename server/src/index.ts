@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import session from 'express-session';
+import path from 'path';
+import fs from 'fs';
 import { initDb } from './db';
 import { authRouter } from './routes/auth';
 import { clientsRouter } from './routes/clients';
@@ -53,6 +55,14 @@ app.use('/api/v1/backups', backupsRouter);
 app.use('/api/v1/caisse', caisseRouter);
 app.use('/api/v1/stocks', stocksRouter);
 app.use('/api/v1/interventions', interventionsRouter);
+
+const clientDist = path.join(__dirname, '../../client/dist');
+if (fs.existsSync(clientDist)) {
+  app.use(express.static(clientDist));
+  app.get('*', (_req, res) => {
+    res.sendFile(path.join(clientDist, 'index.html'));
+  });
+}
 
 app.use(errorHandler);
 

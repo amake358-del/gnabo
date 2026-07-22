@@ -21,7 +21,8 @@ export function EtiquettesPage() {
 
   useEffect(() => {
     ;(async () => {
-      const { data } = await supabase.from('appareils').select('id, uid_visible, marque, modele, cree_le').order('cree_le', { ascending: false })
+      const { data, error } = await supabase.from('appareils').select('id, uid_visible, marque, modele, cree_le').order('cree_le', { ascending: false })
+      if (error) console.error('Erreur chargement appareils:', error)
       setAppareils(data || [])
     })().finally(() => setLoading(false))
   }, [])
@@ -68,12 +69,12 @@ export function EtiquettesPage() {
           try {
             const dataUrl = await loadImg(qr_data_url)
             if (dataUrl) doc.addImage(dataUrl, 'PNG', x + w / 2 - 10, y + 12, 20, 20)
-          } catch {}
+          } catch (e) { console.error('Erreur chargement QR:', e) }
         }
         doc.rect(x, y, w, h)
       }
       doc.save('etiquettes.pdf')
-    } catch (err: any) { console.error(err) } finally { setGenerating(false) }
+    } catch (err: any) { console.error('Erreur generation etiquettes:', err) } finally { setGenerating(false) }
   }
 
   if (loading) return <div className="flex justify-center py-12"><LoadingSpinner /></div>
