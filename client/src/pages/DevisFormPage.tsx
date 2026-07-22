@@ -121,14 +121,21 @@ export function DevisFormPage() {
     const remise = v.remise || 0
     const transport = v.transport || 0
     const pose = v.pose || 0
-    const tva = v.tva || 20
+    const tva = v.tva ?? 0
     const after_remise = total_ht - remise
-    const total_ttc = after_remise + transport + pose + (after_remise * tva / 100)
+    const total_ttc = after_remise + (after_remise * tva / 100)
+    const total_final = total_ttc + transport + pose
     const defaultPct = 30
-    const acompte = (v.acompte && v.acompte > 0) ? v.acompte : Math.round(total_ttc * defaultPct / 100 * 100) / 100
-    const acomptePct = total_ttc > 0 ? Math.round(acompte / total_ttc * 100) : defaultPct
-    const reste = Math.round((total_ttc - acompte) * 100) / 100
-    setStats({ total_ht: Math.round(total_ht * 100) / 100, total_ttc: Math.round(total_ttc * 100) / 100, acompte, reste, acomptePct })
+    const acompte = (v.acompte && v.acompte > 0) ? v.acompte : Math.round(total_final * defaultPct / 100 * 100) / 100
+    const acomptePct = total_final > 0 ? Math.round(acompte / total_final * 100) : defaultPct
+    const reste = Math.round((total_final - acompte) * 100) / 100
+    setStats({
+      total_ht: Math.round(total_ht * 100) / 100,
+      total_ttc: Math.round(total_final * 100) / 100,
+      acompte,
+      reste,
+      acomptePct
+    })
   }, [lines, getValues])
 
   useEffect(() => { recalc() }, [lines, watchRemise, watchTransport, watchPose, watchTva, watchAcompte, recalc])
