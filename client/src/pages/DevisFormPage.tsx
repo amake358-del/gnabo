@@ -134,7 +134,9 @@ export function DevisFormPage() {
   useEffect(() => { recalc() }, [lines, watchRemise, watchTransport, watchPose, watchTva, watchAcompte, recalc])
 
   const addLine = () => {
-    setLines([...lines, { designation: '', quantite: 1, largeur: 0, hauteur: 0, surface: 0, prix_m2: 0, total: 0, sort_order: lines.length }])
+    const modele = modelesList.find(m => m.id === getValues().modele_id)
+    const defaultPrix = modele?.prix || 0
+    setLines([...lines, { designation: '', quantite: 1, largeur: 0, hauteur: 0, surface: 0, prix_m2: defaultPrix, total: 0, sort_order: lines.length }])
   }
 
   const updateLine = (idx: number, field: keyof DevisLine, value: any) => {
