@@ -39,7 +39,7 @@ export function ReceptionPage() {
   const [form, setForm] = useState({
     qr_code: '', client_nom: '', client_telephone: '', client_adresse: '',
     type_appareil: '', marque: '', modele: '', numero_serie: '', etat_esthetique: '',
-    accessoires: '', panne_declaree: '', observations: ''
+    accessoires: '', panne_declaree: '', observations: '', couleur: ''
   })
 
   const handleScanCode = async (code: string) => {
@@ -82,6 +82,7 @@ export function ReceptionPage() {
         numero_serie: form.numero_serie,
         etat_esthetique: form.etat_esthetique,
         accessoires: form.accessoires,
+        couleur: form.couleur || null,
         description_defaut: form.panne_declaree || form.observations,
         date_reception: new Date().toISOString(),
       }).select('id').single()
@@ -182,6 +183,7 @@ export function ReceptionPage() {
             <Input label="Marque" value={form.marque} onChange={e => handleFieldChange('marque', e.target.value)} placeholder="Samsung, Sony..." />
             <Input label="Modèle" value={form.modele} onChange={e => handleFieldChange('modele', e.target.value)} placeholder="Modèle exact" />
           </div>
+          <Input label="Couleur" value={form.couleur} onChange={e => handleFieldChange('couleur', e.target.value)} placeholder="Noir, Blanc, Bleu..." />
 
           <Input label="Numéro de série" value={form.numero_serie} onChange={e => handleFieldChange('numero_serie', e.target.value)} placeholder="SN-..." />
 

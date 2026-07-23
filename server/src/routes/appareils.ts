@@ -91,7 +91,7 @@ router.put('/:id', (req: Request, res: Response) => {
   const db = getDb()
   const existing = db.prepare('SELECT * FROM appareils WHERE id = ?').get(req.params.id) as any
   if (!existing) return res.status(404).json({ error: 'Appareil non trouvé' })
-  const fields = ['client_id','type','marque','modele','numero_serie','code_imei','mot_de_passe','accessoires','description_defaut','etat_esthetique','statut']
+  const fields = ['client_id','type','marque','modele','numero_serie','code_imei','mot_de_passe','accessoires','description_defaut','etat_esthetique','statut','couleur','statut_detail']
   const updates: string[] = ["modifie_le=datetime('now')"]
   const values: any[] = []
   for (const f of fields) {
@@ -123,6 +123,40 @@ router.post('/:id/photo', upload.single('photo'), (req: Request, res: Response) 
   photos.push(photoUrl)
   db.prepare("UPDATE appareils SET photos=?, modifie_le=datetime('now') WHERE id=?").run(JSON.stringify(photos), req.params.id)
   res.json({ data: { photo_url: photoUrl, photos }, message: 'Photo ajoutée' })
+})
+
+router.post('/:id/utiliser-pieces', (req: Request, res: Response) => {
+  const db = getDb()
+  const existing = db.prepare('SELECT * FROM appareils WHERE id = ?').get(req.params.id) as any
+  if (!existing) return res.status(404).json({ error: 'Appareil non trouvé' })
+  const { article_id, quantite, notes } = req.body
+  if (!article_id || !quantite) return res.status(400).json({ error: 'article_id et quantite requis' })
+  const article = db.prepare('SELECT * FROM articles_stock WHERE id = ?').get(article_id) as any
+  if (!article) return res.status(404).json({ error: 'Article non trouvé' })
+  if (article.quantite < quantite) return res.status(400).json({ error: 'Stock insuffisant' })
+  const newQty = article.quantite - quantite
+  db.prepare('UPDATE articles_stock SET quantite = ?, modifie_le = datetime(\'now\') WHERE id = ?').run(newQty, article_id)
+  db.prepare('INSERT INTO mouvements_stock (article_id, type, quantite, reference, notes, utilisateur_id) VALUES (?,?,?,?,?,?)').run(article_id, 'sortie', quantite, `Appareil:${req.params.id}`, notes || '', req.session.userId)
+  auditLog({ utilisateur_id: req.session.userId, module: 'appareils', action: 'utilisation_pieces', nouvelle_valeur: JSON.stringify({ article_id, quantite, appareil_id: req.params.id, nouveau_stock: newQty }), adresse_ip: req.ip })
+  res.json({ message: 'Pièce déduite du stock', nouveau_stock: newQty })
+})
+
+router.post('/:id/valider-test', (req: Request, res: Response) => {
+  const db = getDb()
+  const existing = db.prepare('SELECT * FROM appareils WHERE id = ?').get(req.params.id) as any
+  if (!existing) return res.status(404).json({ error: 'Appareil non trouvé' })
+  db.prepare("UPDATE appareils SET statut='pret', statut_detail='test_valide', modifie_le=datetime('now') WHERE id=?").run(req.params.id)
+  auditLog({ utilisateur_id: req.session.userId, module: 'appareils', action: 'test_valide', ancienne_valeur: JSON.stringify({ statut: existing.statut }), nouvelle_valeur: JSON.stringify({ statut: 'pret', statut_detail: 'test_valide' }), adresse_ip: req.ip })
+  res.json({ message: 'Test validé, appareil prêt à livrer', statut: 'pret' })
+})
+
+router.post('/:id/archive', (req: Request, res: Response) => {
+  const db = getDb()
+  const existing = db.prepare('SELECT * FROM appareils WHERE id = ?').get(req.params.id) as any
+  if (!existing) return res.status(404).json({ error: 'Appareil non trouvé' })
+  db.prepare("UPDATE appareils SET statut='archive', modifie_le=datetime('now') WHERE id=?").run(req.params.id)
+  auditLog({ utilisateur_id: req.session.userId, module: 'appareils', action: 'archive', ancienne_valeur: JSON.stringify({ statut: existing.statut }), nouvelle_valeur: JSON.stringify({ statut: 'archive' }), adresse_ip: req.ip })
+  res.json({ message: 'Appareil archivé' })
 })
 
 export { router as appareilsRouter }

@@ -4,7 +4,7 @@ import { supabase } from '../../services/supabase'
 import { Button } from '../../components/ui/Button'
 import { Badge } from '../../components/ui/Badge'
 import { LoadingSpinner } from '../../components/ui/LoadingSpinner'
-import { Smartphone, Phone, MapPin, Package, FileText, ArrowLeft, ClipboardList, Wrench, CreditCard, Download, DollarSign, Truck } from 'lucide-react'
+import { Smartphone, Phone, MapPin, Package, FileText, ArrowLeft, ClipboardList, Wrench, CreditCard, Download, DollarSign, Truck, CheckCircle, Archive, Box, Palette } from 'lucide-react'
 
 const STATUT_CONFIG: Record<string, { label: string; color: string }> = {
   disponible: { label: 'Disponible', color: 'success' },
@@ -31,6 +31,11 @@ export function AppareilDetailPage() {
   const [facturesList, setFacturesList] = useState<any[]>([])
   const [config, setConfig] = useState<any>({})
   const [loading, setLoading] = useState(true)
+  const [usePiece, setUsePiece] = useState(false)
+  const [articleId, setArticleId] = useState('')
+  const [pieceQty, setPieceQty] = useState(1)
+  const [articles, setArticles] = useState<any[]>([])
+  const [actionMsg, setActionMsg] = useState('')
 
   useEffect(() => {
     if (!id) return
@@ -112,6 +117,12 @@ export function AppareilDetailPage() {
               <span>{app.marque} {app.modele}</span>
             </div>
           )}
+          {app.couleur && (
+            <div className="flex items-center gap-2 text-sm">
+              <Palette size={14} className="text-gray-400" />
+              <span>{app.couleur}</span>
+            </div>
+          )}
           {app.numero_serie && (
             <div>
               <p className="text-xs text-gray-400">N° Série</p>
@@ -163,6 +174,20 @@ export function AppareilDetailPage() {
           <Button onClick={() => navigate(`/electronique/reparation/${app.id}`)}>
             <Wrench size={16} /> Réparation
           </Button>
+          {app.statut === 'test' && (
+            <Button onClick={async () => {
+              await supabase.from('appareils').update({ statut: 'pret', statut_detail: 'test_valide' }).eq('id', app.id)
+              await supabase.from('reparations').update({ statut: 'termine' }).eq('appareil_id', app.id).is('statut', 'test')
+              setApp((prev: any) => ({ ...prev, statut: 'pret', statut_detail: 'test_valide' })); setActionMsg('Test validé')
+            }}>
+              <CheckCircle size={16} /> Valider test
+            </Button>
+          )}
+          {!['pret','livre','archive','non_reparable','restitue'].includes(app.statut) && (
+            <Button onClick={() => { setUsePiece(true); supabase.from('articles_stock').select('id,nom,reference,quantite,prix_unitaire').then(({ data }) => setArticles(data || [])) }}>
+              <Box size={16} /> Utiliser pièces
+            </Button>
+          )}
           {(app.statut === 'pret' || app.statut === 'livre') && (
             <Button onClick={async () => {
               const mod = await import('../../pdf/generateBonLivraison')
@@ -179,7 +204,45 @@ export function AppareilDetailPage() {
               <Truck size={16} /> Bon de livraison
             </Button>
           )}
+          {!['archive','non_reparable','restitue'].includes(app.statut) && (
+            <Button variant="secondary" onClick={async () => {
+              await supabase.from('appareils').update({ statut: 'archive' }).eq('id', app.id)
+              setApp((prev: any) => ({ ...prev, statut: 'archive' })); setActionMsg('Appareil archivé')
+            }}>
+              <Archive size={16} /> Archiver
+            </Button>
+          )}
         </div>
+
+        {actionMsg && <p className="text-sm text-green-500 text-center">{actionMsg}</p>}
+
+        {usePiece && (
+          <div className="border-t border-gray-100 dark:border-gray-700/50 pt-3 space-y-3">
+            <p className="text-sm font-medium">Déduire du stock</p>
+            <select className="input w-full" value={articleId} onChange={e => setArticleId(e.target.value)}>
+              <option value="">Choisir un article...</option>
+              {articles.map(a => (
+                <option key={a.id} value={a.id}>{a.nom} ({a.reference || 'N/R'}) — Stock: {a.quantite}</option>
+              ))}
+            </select>
+            <div className="flex gap-2">
+              <input className="input w-24" type="number" min={1} value={pieceQty} onChange={e => setPieceQty(parseInt(e.target.value) || 1)} />
+              <Button onClick={async () => {
+                if (!articleId) return
+                await supabase.from('mouvements_stock').insert({
+                  article_id: parseInt(articleId), type: 'sortie', quantite: pieceQty,
+                  reference: `Appareil:${app.id}`, notes: `Utilisé pour ${app.marque} ${app.modele}`,
+                  utilisateur_id: (await supabase.auth.getUser()).data.user?.id
+                }).then(async () => {
+                  const { data: art } = await supabase.from('articles_stock').select('quantite').eq('id', articleId).single()
+                  if (art) await supabase.from('articles_stock').update({ quantite: art.quantite - pieceQty }).eq('id', articleId)
+                })
+                setUsePiece(false); setArticleId(''); setPieceQty(1); setActionMsg('Stock mis à jour')
+              }}><Box size={14} /> Déduire</Button>
+              <Button variant="ghost" onClick={() => setUsePiece(false)}>Annuler</Button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Billing section */}
