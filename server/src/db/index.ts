@@ -355,6 +355,8 @@ export function initDb(): Promise<void> {
 function runMigrations(): void {
   try { db.run('ALTER TABLE utilisateurs ADD COLUMN tentatives_echouees INTEGER DEFAULT 0'); } catch (_) {}
   try { db.run('ALTER TABLE utilisateurs ADD COLUMN verrouille_jusque TEXT'); } catch (_) {}
+  try { db.run("ALTER TABLE appareils ADD COLUMN couleur TEXT DEFAULT ''"); } catch (_) {}
+  try { db.run("ALTER TABLE appareils ADD COLUMN statut_detail TEXT DEFAULT ''"); } catch (_) {}
   saveDb();
 }
 

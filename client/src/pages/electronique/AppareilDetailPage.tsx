@@ -7,17 +7,20 @@ import { LoadingSpinner } from '../../components/ui/LoadingSpinner'
 import { Smartphone, Phone, MapPin, Package, FileText, ArrowLeft, ClipboardList, Wrench, CreditCard, Download, DollarSign, Truck } from 'lucide-react'
 
 const STATUT_CONFIG: Record<string, { label: string; color: string }> = {
-  recu: { label: 'Reçu', color: 'info' },
+  disponible: { label: 'Disponible', color: 'success' },
+  attribue: { label: 'Attribué', color: 'info' },
+  recu: { label: 'Réceptionné', color: 'info' },
   diagnostic: { label: 'Diagnostic', color: 'warning' },
-  attente_validation: { label: 'Attente validation', color: 'warning' },
+  validation_client: { label: 'Attente validation', color: 'warning' },
+  reparation_autorisee: { label: 'Réparation autorisée', color: 'success' },
   attente_pieces: { label: 'Attente pièces', color: 'warning' },
   en_reparation: { label: 'En réparation', color: 'warning' },
   test: { label: 'Test', color: 'info' },
-  repare: { label: 'Réparé', color: 'success' },
-  pret: { label: 'Prêt', color: 'success' },
+  pret: { label: 'Prêt à livrer', color: 'success' },
   livre: { label: 'Livré', color: 'success' },
   non_reparable: { label: 'Non réparable', color: 'danger' },
-  restitue: { label: 'Restitué', color: 'default' as const },
+  restitue: { label: 'Restitué sans réparation', color: 'default' as const },
+  archive: { label: 'Archivé', color: 'default' as const },
 }
 
 export function AppareilDetailPage() {
