@@ -290,15 +290,20 @@ export function AppareilDetailPage() {
                 <div key={d.id} className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-700/30 rounded-xl text-sm">
                   <div className="flex items-center gap-3">
                     <span className="font-mono font-medium">{d.numero}</span>
-                    <Badge variant={d.statut === 'accepte' ? 'green' as const : d.statut === 'refuse' ? 'red' as const : 'default' as const}>{d.statut}</Badge>
+                    <Badge variant={d.statut === 'envoye' ? 'blue' as const : d.statut === 'accepte' ? 'green' as const : d.statut === 'refuse' ? 'red' as const : 'default' as const}>{d.statut}</Badge>
                     <span className="text-gray-500">{d.total_ttc?.toLocaleString()} FG</span>
                   </div>
-                  <Button size="sm" onClick={() => {
-                    import('../../pdf/generateElectroniquePdf').then(async mod => {
-                      const blob = await mod.generateDevisElectroniquePdf(d, (config || {}) as any)
-                      window.open(URL.createObjectURL(blob))
-                    })
-                  }}><Download size={14} /></Button>
+                  <div className="flex gap-1">
+                    <Button size="sm" onClick={() =>
+                      navigate(`/electronique/devis/${app.id}?edit=${d.id}`)
+                    }><FileText size={14} /></Button>
+                    <Button size="sm" onClick={() => {
+                      import('../../pdf/generateElectroniquePdf').then(async mod => {
+                        const blob = await mod.generateDevisElectroniquePdf({ ...d, ...config }, (config || {}) as any)
+                        window.open(URL.createObjectURL(blob))
+                      })
+                    }}><Download size={14} /></Button>
+                  </div>
                 </div>
               ))}
             </div>

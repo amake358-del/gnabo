@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom'
 import { supabase } from '../../services/supabase'
 import { Button } from '../../components/ui/Button'
 import { LoadingSpinner } from '../../components/ui/LoadingSpinner'
-import { FileText, ArrowLeft, Save, Plus, Trash2, AlertTriangle } from 'lucide-react'
+import { Badge } from '../../components/ui/Badge'
+import { FileText, ArrowLeft, Save, Plus, Trash2, AlertTriangle, Send, CheckCircle, XCircle } from 'lucide-react'
 
 interface DevisLine {
   designation: string
@@ -12,40 +13,44 @@ interface DevisLine {
   total: number
 }
 
-interface AppareilData {
-  id: string
-  client_id: number
-  client_nom?: string
-  marque: string
-  modele: string
-}
-
 export function DevisElectroniquePage() {
   const { appareilId } = useParams<{ appareilId: string }>()
+  const [searchParams] = useSearchParams()
+  const editDevisId = searchParams.get('edit')
   const navigate = useNavigate()
-  const [appareil, setAppareil] = useState<AppareilData | null>(null)
+  const [appareil, setAppareil] = useState<any>(null)
+  const [devis, setDevis] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
   const [lines, setLines] = useState<DevisLine[]>([{ designation: '', quantite: 1, prix_unitaire: 0, total: 0 }])
   const [notes, setNotes] = useState('')
   const [tva, setTva] = useState(0)
-  const [devisId, _setDevisId] = useState<string | null>(null)
 
   useEffect(() => {
     if (!appareilId) return
     ;(async () => {
-      const { data } = await supabase
+      const { data: appData } = await supabase
         .from('appareils')
         .select('*, clients(nom)')
         .eq('id', appareilId)
         .single()
-      if (data) {
-        const { clients, ...rest } = data as any
-        setAppareil({ ...rest, client_nom: clients?.nom } as AppareilData)
+      if (appData) {
+        const { clients, ...rest } = appData as any
+        setAppareil({ ...rest, client_nom: clients?.nom })
+      }
+
+      if (editDevisId) {
+        const { data: devData } = await supabase.from('devis').select('*').eq('id', editDevisId).single()
+        if (devData) {
+          setDevis(devData)
+          if (devData.lignes) setLines(JSON.parse(devData.lignes))
+          setNotes(devData.notes || '')
+          setTva(devData.tva || 0)
+        }
       }
     })().finally(() => setLoading(false))
-  }, [appareilId])
+  }, [appareilId, editDevisId])
 
   const calcLineTotal = (line: DevisLine) => line.quantite * line.prix_unitaire
 
@@ -65,7 +70,7 @@ export function DevisElectroniquePage() {
   const tvaAmount = totalHt * (tva / 100)
   const totalTtc = totalHt + tvaAmount
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (newStatut?: string) => {
     if (!appareilId || !appareil) return
     setSaving(true); setError('')
     try {
@@ -73,21 +78,28 @@ export function DevisElectroniquePage() {
         client_id: appareil.client_id,
         appareil_id: appareilId,
         service: 'electronique',
-        numero: 'DEV-E-' + Date.now().toString(36).toUpperCase(),
+        numero: devis?.numero || 'DEV-E-' + Date.now().toString(36).toUpperCase(),
         lignes: JSON.stringify(lines.filter(l => l.designation)),
         montant_ht: totalHt,
         tva,
         montant_ttc: totalTtc,
         notes,
-        statut: 'brouillon',
+        statut: newStatut || devis?.statut || 'brouillon',
       }
-      if (devisId) {
-        await supabase.from('devis').update(payload).eq('id', devisId)
+      if (devis) {
+        await supabase.from('devis').update(payload).eq('id', devis.id)
       } else {
         await supabase.from('devis').insert(payload)
       }
+      if (newStatut === 'accepte') {
+        await supabase.from('appareils').update({ statut: 'reparation_autorisee', modifie_le: new Date().toISOString() }).eq('id', appareilId)
+      }
       navigate(`/electronique/appareils/${appareilId}`)
     } catch (err: any) { setError(err.message) } finally { setSaving(false) }
+  }
+
+  const STATUT_COLORS: Record<string, string> = {
+    brouillon: 'default', envoye: 'blue', accepte: 'green', refuse: 'red',
   }
 
   if (loading) return <div className="flex justify-center py-12"><LoadingSpinner /></div>
@@ -98,7 +110,11 @@ export function DevisElectroniquePage() {
       <Button onClick={() => navigate(`/electronique/appareils/${appareilId}`)} className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700"><ArrowLeft size={16} /> Retour</Button>
       <div className="flex items-center gap-3">
         <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center"><FileText size={20} className="text-blue-500" /></div>
-        <div><h1 className="text-xl font-bold">Nouveau devis</h1><p className="text-sm text-gray-500">{appareil.client_nom} — {appareil.marque} {appareil.modele}</p></div>
+        <div>
+          <h1 className="text-xl font-bold">{devis ? 'Modifier devis' : 'Nouveau devis'}</h1>
+          <p className="text-sm text-gray-500">{appareil.client_nom} — {appareil.marque} {appareil.modele}</p>
+        </div>
+        {devis?.statut && <Badge variant={STATUT_COLORS[devis.statut] as any}>{devis.statut}</Badge>}
       </div>
 
       <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/50 p-6 space-y-4">
@@ -145,10 +161,32 @@ export function DevisElectroniquePage() {
         </div>
 
         {error && <p className="text-sm text-red-500 flex items-center gap-1"><AlertTriangle size={14} /> {error}</p>}
-        <div className="flex gap-3">
-          <Button onClick={handleSubmit} disabled={saving}><Save size={16} /> Créer le devis</Button>
+
+        <div className="flex gap-3 pt-2 border-t border-gray-100 dark:border-gray-700/50">
+          <Button onClick={() => handleSubmit(devis?.statut === 'brouillon' ? 'brouillon' : undefined)} disabled={saving}>
+            <Save size={16} /> {devis ? 'Mettre à jour' : 'Créer le devis'}
+          </Button>
+          {devis?.statut === 'brouillon' && (
+            <Button onClick={() => handleSubmit('envoye')} disabled={saving}>
+              <Send size={16} /> Envoyer au client
+            </Button>
+          )}
+          {devis?.statut === 'envoye' && (
+            <>
+              <Button onClick={() => handleSubmit('accepte')} disabled={saving}>
+                <CheckCircle size={16} /> Accepter
+              </Button>
+              <Button onClick={() => handleSubmit('refuse')} disabled={saving} variant="secondary">
+                <XCircle size={16} /> Refuser
+              </Button>
+            </>
+          )}
           <Button variant="ghost" onClick={() => navigate(`/electronique/appareils/${appareilId}`)}>Annuler</Button>
         </div>
+
+        {devis?.statut && devis.statut !== 'brouillon' && (
+          <p className="text-xs text-gray-400">Statut actuel : {devis.statut}. {devis.statut === 'accepte' ? 'L\'appareil passe en réparation autorisée.' : ''}</p>
+        )}
       </div>
     </div>
   )
