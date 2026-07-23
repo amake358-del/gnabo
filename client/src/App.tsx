@@ -18,6 +18,7 @@ import { DiagnosticPage } from './pages/electronique/DiagnosticPage'
 import { ReparationPage } from './pages/electronique/ReparationPage'
 import { DevisElectroniquePage } from './pages/electronique/DevisElectroniquePage'
 import { FactureElectroniquePage } from './pages/electronique/FactureElectroniquePage'
+import { ControleTechniquePage } from './pages/electronique/ControleTechniquePage'
 import { PaiementPage } from './pages/electronique/PaiementPage'
 import { EtiquettesPage } from './pages/electronique/EtiquettesPage'
 import { QrCodesPage } from './pages/electronique/QrCodesPage'
@@ -55,6 +56,7 @@ export default function App() {
       <Route path="/electronique/appareils/:id" element={<ProtectedRoute><AppareilDetailPage /></ProtectedRoute>} />
       <Route path="/electronique/reception" element={<ProtectedRoute><ReceptionPage /></ProtectedRoute>} />
       <Route path="/electronique/diagnostic/:id" element={<ProtectedRoute><DiagnosticPage /></ProtectedRoute>} />
+      <Route path="/electronique/controle/:appareilId" element={<ProtectedRoute><ControleTechniquePage /></ProtectedRoute>} />
       <Route path="/electronique/reparation/:appareilId" element={<ProtectedRoute><ReparationPage /></ProtectedRoute>} />
       <Route path="/electronique/devis/:appareilId" element={<ProtectedRoute><DevisElectroniquePage /></ProtectedRoute>} />
       <Route path="/electronique/factures/:appareilId" element={<ProtectedRoute><FactureElectroniquePage /></ProtectedRoute>} />

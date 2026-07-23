@@ -4,7 +4,7 @@ import { supabase } from '../../services/supabase'
 import { Button } from '../../components/ui/Button'
 import { Badge } from '../../components/ui/Badge'
 import { LoadingSpinner } from '../../components/ui/LoadingSpinner'
-import { Smartphone, Phone, MapPin, Package, FileText, ArrowLeft, ClipboardList, Wrench, CreditCard, Download, DollarSign, Truck, CheckCircle, Archive, Box, Palette, PenTool } from 'lucide-react'
+import { Smartphone, Phone, MapPin, Package, FileText, ArrowLeft, ClipboardList, Wrench, CreditCard, Download, DollarSign, Truck, CheckCircle, Archive, Box, Palette, PenTool, ClipboardCheck } from 'lucide-react'
 import { Modal } from '../../components/ui/Modal'
 import { SignaturePad } from '../../components/ui/SignaturePad'
 
@@ -176,6 +176,9 @@ export function AppareilDetailPage() {
           </Button>
           <Button onClick={() => navigate(`/electronique/reparation/${app.id}`)}>
             <Wrench size={16} /> Réparation
+          </Button>
+          <Button onClick={() => navigate(`/electronique/controle/${app.id}`)}>
+            <ClipboardCheck size={16} /> Contrôle
           </Button>
           {app.statut === 'test' && (
             <Button onClick={async () => {

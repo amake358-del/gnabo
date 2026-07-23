@@ -442,6 +442,28 @@ function migrateClientIdNullable(): void {
   }
 }
 
+function migrateControlesTechniques(): void {
+  db.run(`CREATE TABLE IF NOT EXISTS tests_techniques (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    appareil_id INTEGER NOT NULL REFERENCES appareils(id) ON DELETE CASCADE,
+    categorie TEXT NOT NULL,
+    resultat TEXT NOT NULL DEFAULT 'non_test' CHECK(resultat IN ('ok','ko','non_test','na')),
+    commentaire TEXT DEFAULT '',
+    cree_le TEXT DEFAULT (datetime('now')),
+    modifie_le TEXT DEFAULT (datetime('now'))
+  )`);
+  db.run(`CREATE TABLE IF NOT EXISTS controles_techniques (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    appareil_id INTEGER NOT NULL REFERENCES appareils(id) ON DELETE CASCADE,
+    resultat_global TEXT DEFAULT 'en_cours' CHECK(resultat_global IN ('en_cours','ok','ko')),
+    commentaire TEXT DEFAULT '',
+    tests TEXT DEFAULT '[]',
+    technicien TEXT DEFAULT '',
+    cree_le TEXT DEFAULT (datetime('now')),
+    modifie_le TEXT DEFAULT (datetime('now'))
+  )`);
+}
+
 function runMigrations(): void {
   try { db.run('ALTER TABLE utilisateurs ADD COLUMN tentatives_echouees INTEGER DEFAULT 0'); } catch (_) {}
   try { db.run('ALTER TABLE utilisateurs ADD COLUMN verrouille_jusque TEXT'); } catch (_) {}
@@ -457,6 +479,7 @@ function runMigrations(): void {
   try { db.run("ALTER TABLE appareils ADD COLUMN date_reception TEXT"); } catch (_) {}
   migrateAppareilsStatut();
   migrateClientIdNullable();
+  migrateControlesTechniques();
   saveDb();
 }
 

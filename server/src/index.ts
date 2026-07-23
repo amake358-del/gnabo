@@ -23,6 +23,7 @@ import { caisseRouter } from './routes/caisse';
 import { stocksRouter } from './routes/stocks';
 import { interventionsRouter } from './routes/interventions';
 import { etiquettesRouter } from './routes/etiquettes';
+import { controlesRouter } from './routes/controles-techniques';
 import { errorHandler } from './middleware/error-handler';
 
 const app = express();
@@ -57,6 +58,7 @@ app.use('/api/v1/caisse', caisseRouter);
 app.use('/api/v1/stocks', stocksRouter);
 app.use('/api/v1/interventions', interventionsRouter);
 app.use('/api/v1/etiquettes', etiquettesRouter);
+app.use('/api/v1/controles', controlesRouter);
 
 const clientDist = path.join(__dirname, '../../client/dist');
 if (fs.existsSync(clientDist)) {
