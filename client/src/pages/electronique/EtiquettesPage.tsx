@@ -91,8 +91,6 @@ export function EtiquettesPage() {
       const p = prefix.toUpperCase().replace(/[^A-Z0-9_-]/g, '') || 'EL'
       const start = Math.max(1, parseInt(debut || '1'))
       const count = Math.min(Math.max(1, parseInt(quantite || '10')), 500)
-      const { data: firstClient } = await supabase.from('clients').select('id').limit(1).maybeSingle()
-      if (!firstClient) { setMessage('Ajoutez d\'abord un client'); setBatchLoading(false); return }
       const ids: string[] = []
       const rows: any[] = []
       for (let i = 0; i < count; i++) {
@@ -100,7 +98,7 @@ export function EtiquettesPage() {
         const { data: existing } = await supabase.from('appareils').select('id').eq('uid_visible', uid).maybeSingle()
         if (existing) continue
         const interne = `${uid}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`
-        rows.push({ uid_interne: interne, uid_visible: uid, type: 'etiquette', marque: 'Pré-imprimée', modele: 'Étiquette', statut: 'disponible', client_id: firstClient.id })
+        rows.push({ uid_interne: interne, uid_visible: uid, type: 'etiquette', marque: 'Pré-imprimée', modele: 'Étiquette', statut: 'disponible', client_id: null })
         ids.push(uid)
       }
       if (rows.length > 0) {

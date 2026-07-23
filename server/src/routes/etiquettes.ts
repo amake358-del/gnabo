@@ -25,8 +25,8 @@ router.post('/batch', (req: Request, res: Response) => {
       const now = new Date().toISOString()
       const interne = `${uid}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`
       dbRun(
-        `INSERT INTO appareils (uid_interne, uid_visible, client_id, type, marque, modele, statut, cree_le, modifie_le)
-         VALUES (?, ?, 0, 'etiquette', 'Pre-imprimee', 'Etiquette', 'disponible', ?, ?)`,
+        `INSERT INTO appareils (uid_interne, uid_visible, type, marque, modele, statut, cree_le, modifie_le)
+         VALUES (?, ?, 'etiquette', 'Pre-imprimee', 'Etiquette', 'disponible', ?, ?)`,
         [interne, uid, now, now]
       )
       generated.push({ uid, numero: uid })

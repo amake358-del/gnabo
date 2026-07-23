@@ -365,7 +365,7 @@ function migrateAppareilsStatut(): void {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       uid_interne TEXT UNIQUE NOT NULL,
       uid_visible TEXT UNIQUE NOT NULL,
-      client_id INTEGER NOT NULL REFERENCES clients(id),
+      client_id INTEGER REFERENCES clients(id),
       type TEXT NOT NULL,
       marque TEXT NOT NULL,
       modele TEXT NOT NULL,
@@ -398,12 +398,57 @@ function migrateAppareilsStatut(): void {
   }
 }
 
+function migrateClientIdNullable(): void {
+  try {
+    db.run("INSERT INTO appareils (uid_interne, uid_visible, type, marque, modele, statut) VALUES ('_test_null_client', '_test_null_client', 'test', 'test', 'test', 'disponible')");
+    db.run("DELETE FROM appareils WHERE uid_interne = '_test_null_client'");
+  } catch (_) {
+    const data = db.prepare('SELECT * FROM appareils').all();
+    const cols = ['id','uid_interne','uid_visible','client_id','type','marque','modele','numero_serie','code_imei','mot_de_passe','accessoires','description_defaut','etat_esthetique','statut','QR_code_genere','etiquette_genere','photos','cree_le','modifie_le','couleur','statut_detail','signature_client'];
+    db.run('DROP TABLE IF EXISTS appareils_mig2');
+    db.run(`CREATE TABLE appareils_mig2 (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      uid_interne TEXT UNIQUE NOT NULL,
+      uid_visible TEXT UNIQUE NOT NULL,
+      client_id INTEGER REFERENCES clients(id),
+      type TEXT NOT NULL,
+      marque TEXT NOT NULL,
+      modele TEXT NOT NULL,
+      numero_serie TEXT,
+      code_imei TEXT,
+      mot_de_passe TEXT,
+      accessoires TEXT,
+      description_defaut TEXT,
+      etat_esthetique TEXT,
+      couleur TEXT DEFAULT '',
+      statut_detail TEXT DEFAULT '',
+      signature_client TEXT DEFAULT '',
+      statut TEXT DEFAULT 'disponible' CHECK(statut IN ('disponible','attribue','recu','diagnostic','validation_client','reparation_autorisee','attente_pieces','en_reparation','test','pret','livre','non_reparable','restitue','archive')),
+      QR_code_genere INTEGER DEFAULT 0,
+      etiquette_genere INTEGER DEFAULT 0,
+      photos TEXT,
+      cree_le TEXT DEFAULT (datetime('now')),
+      modifie_le TEXT DEFAULT (datetime('now'))
+    )`);
+    for (const row of data) {
+      const vals = cols.map(c => (row as any)[c] ?? null)
+      const placeholders = cols.map(() => '?').join(',')
+      db.prepare(`INSERT INTO appareils_mig2 (${cols.join(',')}) VALUES (${placeholders})`).run(...vals)
+    }
+    db.run('DROP TABLE appareils');
+    db.run('ALTER TABLE appareils_mig2 RENAME TO appareils');
+    db.run('CREATE INDEX IF NOT EXISTS idx_appareils_client ON appareils(client_id)');
+    db.run('CREATE INDEX IF NOT EXISTS idx_appareils_statut ON appareils(statut)');
+  }
+}
+
 function runMigrations(): void {
   try { db.run('ALTER TABLE utilisateurs ADD COLUMN tentatives_echouees INTEGER DEFAULT 0'); } catch (_) {}
   try { db.run('ALTER TABLE utilisateurs ADD COLUMN verrouille_jusque TEXT'); } catch (_) {}
   try { db.run("ALTER TABLE appareils ADD COLUMN couleur TEXT DEFAULT ''"); } catch (_) {}
   try { db.run("ALTER TABLE appareils ADD COLUMN statut_detail TEXT DEFAULT ''"); } catch (_) {}
   migrateAppareilsStatut();
+  migrateClientIdNullable();
   saveDb();
 }
 

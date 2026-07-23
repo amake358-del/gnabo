@@ -1,7 +1,10 @@
 -- Migration Supabase pour workflow Électronique v2
 -- À exécuter dans Supabase SQL Editor
 
--- 1. Nouvelles colonnes appareils
+-- 1. client_id nullable (etiquettes pre-imprimees sans client)
+ALTER TABLE appareils ALTER COLUMN client_id DROP NOT NULL;
+
+-- 2. Nouvelles colonnes appareils
 ALTER TABLE appareils ADD COLUMN IF NOT EXISTS couleur TEXT DEFAULT '';
 ALTER TABLE appareils ADD COLUMN IF NOT EXISTS statut_detail TEXT DEFAULT '';
 ALTER TABLE appareils ADD COLUMN IF NOT EXISTS signature_client TEXT;
