@@ -37,11 +37,14 @@ clientsRouter.post('/', (req: Request, res: Response) => {
 
 clientsRouter.put('/:id', (req: Request, res: Response) => {
   const old = dbGet('SELECT * FROM clients WHERE id = ?', [req.params.id]);
-  const { nom, prenom, telephone, telephone2, email, adresse, ville, code_postal, notes } = req.body;
-  dbRun(
-    `UPDATE clients SET nom=?, prenom=?, telephone=?, telephone2=?, email=?, adresse=?, ville=?, code_postal=?, notes=?, modifie_le=datetime('now') WHERE id=?`,
-    [nom, prenom, telephone, telephone2, email, adresse, ville, code_postal, notes, req.params.id]
-  );
+  if (!old) { res.status(404).json({ error: 'Client non trouvé' }); return; }
+  const fields = ['nom','prenom','telephone','telephone2','email','adresse','ville','code_postal','notes'];
+  const updates: string[] = ["modifie_le=datetime('now')"];
+  const values: any[] = [];
+  for (const f of fields) {
+    if (req.body[f] !== undefined) { updates.push(`${f}=?`); values.push(req.body[f]); }
+  }
+  if (updates.length > 1) { values.push(req.params.id); dbRun(`UPDATE clients SET ${updates.join(',')} WHERE id=?`, values); }
   const client = dbGet('SELECT * FROM clients WHERE id = ?', [req.params.id]);
   auditLog({ utilisateur_id: req.session.userId, module: 'clients', action: 'modification', ancienne_valeur: old ? JSON.stringify(old) : null, nouvelle_valeur: JSON.stringify(client), adresse_ip: req.ip });
   res.json({ data: client });

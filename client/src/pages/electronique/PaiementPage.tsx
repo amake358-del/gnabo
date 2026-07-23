@@ -136,7 +136,7 @@ export function PaiementPage() {
                 <div>
                   <span className="font-medium">{new Date(p.created_at).toLocaleDateString('fr-FR')}</span>
                   <span className="ml-2 text-gray-500 capitalize">{p.type}</span>
-                  <span className="ml-2 text-gray-500">{p.methode}</span>
+                  <span className="ml-2 text-gray-500 capitalize">{p.mode}</span>
                   {p.facture_numero && <span className="ml-2 text-gray-400">({p.facture_numero})</span>}
                 </div>
                 <div className="flex items-center gap-2">

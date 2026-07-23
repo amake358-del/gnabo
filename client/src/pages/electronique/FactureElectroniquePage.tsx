@@ -64,6 +64,7 @@ export function FactureElectroniquePage() {
     try {
       await supabase.from('factures').insert({
         client_id: appareil.client_id,
+        appareil_id: parseInt(appareilId!),
         service: 'electronique',
         numero: 'FAC-E-' + Date.now().toString(36).toUpperCase(),
         devis_id: devisId || null,

@@ -101,7 +101,7 @@ function drawClientInfo(doc: jsPDF, client: { nom?: string; tel?: string; marque
   return y + 22
 }
 
-function drawTable(doc: jsPDF, lines: any[], y: number): number {
+function drawTable(doc: jsPDF, lines: any[], y: number, tvaPct: number = 0, totalTtcVal?: number): number {
   const cols = [
     { x: M, w: CW * 0.45, align: 'left' as const },
     { x: M + CW * 0.45, w: CW * 0.1, align: 'center' as const },
@@ -138,8 +138,8 @@ function drawTable(doc: jsPDF, lines: any[], y: number): number {
 
   const rows = [
     { label: 'Total HT', value: totalHt, bold: false, border: false },
-    { label: 'TVA', value: 0, bold: false, border: false },
-    { label: 'Total TTC', value: totalHt, bold: true, border: true },
+    { label: 'TVA', value: totalHt * (tvaPct / 100), bold: false, border: false },
+    { label: 'Total TTC', value: totalTtcVal ?? totalHt * (1 + tvaPct / 100), bold: true, border: true },
   ]
 
   rows.forEach(r => {
@@ -179,7 +179,7 @@ export async function generateDevisElectroniquePdf(devis: any, settings: Setting
   let y = await drawHeader(doc, settings, 'DEVIS', devis.numero, devis.statut, 10)
   y = drawClientInfo(doc, { nom: devis.client_nom, tel: devis.client_telephone, marque: devis.marque, modele: devis.modele, qr_code: devis.qr_code }, y)
   const lignes = typeof devis.lignes === 'string' ? JSON.parse(devis.lignes) : (devis.lignes || [])
-  y = drawTable(doc, lignes, y)
+  y = drawTable(doc, lignes, y, devis.tva || 0, devis.montant_ttc)
   drawFooter(doc, devis.notes || '', y, settings)
   return doc.output('blob')
 }
@@ -189,7 +189,7 @@ export async function generateFactureElectroniquePdf(facture: any, settings: Set
   let y = await drawHeader(doc, settings, 'FACTURE', facture.numero, facture.statut, 10)
   y = drawClientInfo(doc, { nom: facture.client_nom, tel: facture.client_telephone, marque: facture.marque, modele: facture.modele, qr_code: facture.qr_code }, y)
   const lignes = typeof facture.lignes === 'string' ? JSON.parse(facture.lignes) : (facture.lignes || [])
-  y = drawTable(doc, lignes, y)
+  y = drawTable(doc, lignes, y, facture.tva || 0, facture.montant_ttc)
 
   // Payment summary
   if (facture.paiements && facture.paiements.length > 0) {

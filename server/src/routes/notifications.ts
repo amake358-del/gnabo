@@ -29,16 +29,16 @@ router.post('/', (req: Request, res: Response) => {
   res.json({ data: notif, message: 'Notification créée' })
 })
 
-router.put('/:id/read', (req: Request, res: Response) => {
-  const db = getDb()
-  db.prepare("UPDATE notifications SET read = 1 WHERE id = ?").run(req.params.id)
-  res.json({ message: 'Marquée comme lue' })
-})
-
 router.put('/read-all', (_req: Request, res: Response) => {
   const db = getDb()
   db.prepare("UPDATE notifications SET read = 1 WHERE read = 0").run()
   res.json({ message: 'Toutes marquées comme lues' })
+})
+
+router.put('/:id/read', (req: Request, res: Response) => {
+  const db = getDb()
+  db.prepare("UPDATE notifications SET read = 1 WHERE id = ?").run(req.params.id)
+  res.json({ message: 'Marquée comme lue' })
 })
 
 router.delete('/:id', (req: Request, res: Response) => {
