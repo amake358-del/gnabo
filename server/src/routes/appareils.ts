@@ -69,18 +69,20 @@ router.get('/:id', (req: Request, res: Response) => {
 
 router.post('/', async (req: Request, res: Response) => {
   const db = getDb()
-  const { client_id, type, marque, modele, numero_serie, code_imei, mot_de_passe, accessoires, description_defaut, etat_esthetique } = req.body
+  const { client_id, type, marque, modele, numero_serie, code_imei, mot_de_passe, accessoires, description_defaut, etat_esthetique, couleur, categorie, priorite, technicien, garantie_jours, panne_declaree, observations, date_estimee, date_reception } = req.body
   if (!client_id) return res.status(400).json({ error: 'Client requis' })
   let uid_interne = genUidInterne()
   while (db.prepare('SELECT id FROM appareils WHERE uid_interne = ?').get(uid_interne)) {
     uid_interne = genUidInterne()
   }
   const uid_visible = await genUidVisible(db)
-  const result = db.prepare(`INSERT INTO appareils (uid_interne, uid_visible, client_id, type, marque, modele, numero_serie, code_imei, mot_de_passe, accessoires, description_defaut, etat_esthetique)
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`).run(
+  const result = db.prepare(`INSERT INTO appareils (uid_interne, uid_visible, client_id, type, marque, modele, numero_serie, code_imei, mot_de_passe, accessoires, description_defaut, etat_esthetique, couleur, categorie, priorite, technicien, garantie_jours, panne_declaree, observations, date_estimee, date_reception)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`).run(
     uid_interne, uid_visible, client_id, type || '', marque || '', modele || '',
     numero_serie || '', code_imei || '', mot_de_passe || '', accessoires || '',
-    description_defaut || '', etat_esthetique || ''
+    description_defaut || '', etat_esthetique || '', couleur || '', categorie || '',
+    priorite || 'normale', technicien || '', parseInt(garantie_jours) || 0,
+    panne_declaree || '', observations || '', date_estimee || '', date_reception || new Date().toISOString()
   )
   const app = db.prepare('SELECT * FROM appareils WHERE id = ?').get(result.lastInsertRowid)
   auditLog({ utilisateur_id: req.session.userId, module: 'appareils', action: 'reception', nouvelle_valeur: JSON.stringify(app), adresse_ip: req.ip })
@@ -91,7 +93,7 @@ router.put('/:id', (req: Request, res: Response) => {
   const db = getDb()
   const existing = db.prepare('SELECT * FROM appareils WHERE id = ?').get(req.params.id) as any
   if (!existing) return res.status(404).json({ error: 'Appareil non trouvé' })
-  const fields = ['client_id','type','marque','modele','numero_serie','code_imei','mot_de_passe','accessoires','description_defaut','etat_esthetique','statut','couleur','statut_detail']
+  const fields = ['client_id','type','marque','modele','numero_serie','code_imei','mot_de_passe','accessoires','description_defaut','etat_esthetique','statut','couleur','statut_detail','categorie','priorite','technicien','garantie_jours','panne_declaree','observations','date_estimee']
   const updates: string[] = ["modifie_le=datetime('now')"]
   const values: any[] = []
   for (const f of fields) {
