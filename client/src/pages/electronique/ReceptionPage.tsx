@@ -14,6 +14,7 @@ export function ReceptionPage() {
   const [scanError, setScanError] = useState('')
   const [scanLoading, setScanLoading] = useState(false)
   const [appareilId, setAppareilId] = useState<string | null>(null)
+  const [existingAppareil, setExistingAppareil] = useState<any>(null)
   const [showScanner, setShowScanner] = useState(false)
   const [cameraError, setCameraError] = useState('')
   const scannerRef = useRef<Html5Qrcode | null>(null)
@@ -46,8 +47,19 @@ export function ReceptionPage() {
     if (!code.trim()) return
     setScanLoading(true); setScanError('')
     try {
-      const { data: existing } = await supabase.from('appareils').select('id').eq('uid_visible', code.trim().toUpperCase()).maybeSingle()
+      const { data: existing } = await supabase.from('appareils').select('id, statut, marque, modele').eq('uid_visible', code.trim().toUpperCase()).maybeSingle()
       if (existing) {
+        if (existing.statut === 'disponible' || existing.statut === 'attribue') {
+          setAppareilId(existing.id)
+          setExistingAppareil(existing)
+          setForm(prev => ({
+            ...prev, qr_code: code.trim().toUpperCase(),
+            marque: existing.marque !== 'Pré-imprimée' ? existing.marque : '',
+            modele: existing.modele !== 'Étiquette' ? existing.modele : '',
+          }))
+          setStep('form')
+          return
+        }
         setAppareilId(existing.id)
         setStep('found')
         return
@@ -70,12 +82,20 @@ export function ReceptionPage() {
   const handleSubmit = async () => {
     if (!form.client_nom) return
     try {
-      const { data: newAppareil, error } = await supabase.from('appareils').insert({
-        uid_interne: 'INT-' + Date.now(),
-        uid_visible: form.qr_code,
-        client_nom: form.client_nom,
-        client_telephone: form.client_telephone || null,
-        client_adresse: form.client_adresse || null,
+      let clientId: number | null = null
+      const { data: existingClient } = await supabase.from('clients').select('id').eq('nom', form.client_nom).maybeSingle()
+      if (existingClient) {
+        clientId = existingClient.id
+      } else {
+        const { data: newClient, error: clientErr } = await supabase.from('clients').insert({
+          nom: form.client_nom, telephone: form.client_telephone || null, adresse: form.client_adresse || null,
+        }).select('id').single()
+        if (clientErr) throw clientErr
+        clientId = newClient.id
+      }
+
+      const payload = {
+        client_id: clientId,
         type: form.type_appareil,
         marque: form.marque,
         modele: form.modele,
@@ -85,9 +105,22 @@ export function ReceptionPage() {
         couleur: form.couleur || null,
         description_defaut: form.panne_declaree || form.observations,
         date_reception: new Date().toISOString(),
-      }).select('id').single()
-      if (error) throw error
-      navigate(`/electronique/appareils/${newAppareil.id}`)
+        statut: 'recu',
+      }
+
+      if (existingAppareil && appareilId) {
+        const { error } = await supabase.from('appareils').update(payload).eq('id', appareilId)
+        if (error) throw error
+        navigate(`/electronique/appareils/${appareilId}`)
+      } else {
+        const { data: newApp, error } = await supabase.from('appareils').insert({
+          ...payload,
+          uid_interne: 'INT-' + Date.now(),
+          uid_visible: form.qr_code,
+        }).select('id').single()
+        if (error) throw error
+        navigate(`/electronique/appareils/${newApp.id}`)
+      }
     } catch (err: any) {
       setScanError(err.message || 'Erreur de création')
     }
