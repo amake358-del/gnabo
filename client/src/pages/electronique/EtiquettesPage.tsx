@@ -34,7 +34,7 @@ export function EtiquettesPage() {
     const { data, error } = await supabase
       .from('appareils')
       .select('id, uid_visible, marque, modele, cree_le, statut')
-      .in('statut', ['disponible', 'recu', 'diagnostic', 'attente_devis', 'devis_envoye', 'en_reparation', 'pret', 'livre'])
+      .in('statut', ['disponible', 'recu', 'diagnostic', 'validation_client', 'reparation_autorisee', 'attente_pieces', 'en_reparation', 'test', 'pret', 'livre'])
       .order('cree_le', { ascending: false })
     if (error) console.error('Erreur chargement:', error)
     setAppareils(data || [])

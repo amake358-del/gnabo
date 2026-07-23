@@ -84,6 +84,18 @@ export function ReparationPage() {
         })
         if (error) throw error
       }
+
+      const statutMap: Record<string, string> = {
+        en_cours: 'en_reparation',
+        attente_pieces: 'attente_pieces',
+        test: 'test',
+        termine: 'pret',
+      }
+      const appStatut = statutMap[form.statut]
+      if (appStatut) {
+        await supabase.from('appareils').update({ statut: appStatut, modifie_le: new Date().toISOString() }).eq('id', appareilId)
+      }
+
       navigate(`/electronique/appareils/${appareilId}`)
     } catch (err: any) {
       setError(err.message || 'Erreur lors de l\'enregistrement')
