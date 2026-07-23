@@ -50,7 +50,10 @@ CREATE TABLE IF NOT EXISTS controles_techniques (
 );
 CREATE INDEX IF NOT EXISTS idx_controles_appareil ON controles_techniques(appareil_id);
 
--- 6. Index supplémentaires pour performances
+-- 6a. Ajout appareil_id sur factures (manquait dans schema initial)
+ALTER TABLE factures ADD COLUMN IF NOT EXISTS appareil_id BIGINT REFERENCES appareils(id) ON DELETE SET NULL;
+
+-- 6b. Index supplémentaires pour performances
 CREATE INDEX IF NOT EXISTS idx_appareils_uid_visible ON appareils(uid_visible);
 CREATE INDEX IF NOT EXISTS idx_appareils_uid_interne ON appareils(uid_interne);
 CREATE INDEX IF NOT EXISTS idx_appareils_telephone ON appareils(client_id);
