@@ -39,7 +39,7 @@ test.describe('Électronique - Réception appareil', () => {
     await qrInput.fill('TEST-FORM-001')
     await qrInput.press('Enter')
     await page.waitForTimeout(2000)
-    const fields = ['client', 'Téléphone', 'Adresse', 'Type', 'État', 'Marque', 'Modèle']
+    const fields = ['client', 'Téléphone', 'Adresse', 'Type', 'Catégorie', 'Marque', 'Modèle', 'Couleur', 'Série', 'IMEI', 'PIN', 'État', 'Priorité', 'Technicien', 'Garantie', 'estimation']
     for (const f of fields) {
       const field = page.locator(`label:has-text("${f}")`)
       if (await field.isVisible()) {
