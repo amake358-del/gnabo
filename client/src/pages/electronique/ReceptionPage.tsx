@@ -83,7 +83,9 @@ export function ReceptionPage() {
     if (!form.client_nom) return
     try {
       let clientId: number | null = null
-      const { data: existingClient } = await supabase.from('clients').select('id').eq('nom', form.client_nom).maybeSingle()
+      const { data: existingClient } = await supabase.from('clients').select('id')
+        .or(`nom.eq.${form.client_nom},telephone.eq.${form.client_telephone || ''}`)
+        .maybeSingle()
       if (existingClient) {
         clientId = existingClient.id
       } else {
