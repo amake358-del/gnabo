@@ -4,7 +4,9 @@ import { supabase } from '../../services/supabase'
 import { Button } from '../../components/ui/Button'
 import { Badge } from '../../components/ui/Badge'
 import { LoadingSpinner } from '../../components/ui/LoadingSpinner'
-import { Smartphone, Phone, MapPin, Package, FileText, ArrowLeft, ClipboardList, Wrench, CreditCard, Download, DollarSign, Truck, CheckCircle, Archive, Box, Palette } from 'lucide-react'
+import { Smartphone, Phone, MapPin, Package, FileText, ArrowLeft, ClipboardList, Wrench, CreditCard, Download, DollarSign, Truck, CheckCircle, Archive, Box, Palette, PenTool } from 'lucide-react'
+import { Modal } from '../../components/ui/Modal'
+import { SignaturePad } from '../../components/ui/SignaturePad'
 
 const STATUT_CONFIG: Record<string, { label: string; color: string }> = {
   disponible: { label: 'Disponible', color: 'success' },
@@ -36,6 +38,7 @@ export function AppareilDetailPage() {
   const [pieceQty, setPieceQty] = useState(1)
   const [articles, setArticles] = useState<any[]>([])
   const [actionMsg, setActionMsg] = useState('')
+  const [showSignature, setShowSignature] = useState(false)
 
   useEffect(() => {
     if (!id) return
@@ -188,6 +191,11 @@ export function AppareilDetailPage() {
               <Box size={16} /> Utiliser pièces
             </Button>
           )}
+          {app.statut === 'pret' && (
+            <Button onClick={() => setShowSignature(true)}>
+              <PenTool size={16} /> Livrer avec signature
+            </Button>
+          )}
           {(app.statut === 'pret' || app.statut === 'livre') && (
             <Button onClick={async () => {
               const mod = await import('../../pdf/generateBonLivraison')
@@ -198,6 +206,7 @@ export function AppareilDetailPage() {
                 date_livraison: new Date().toISOString(),
                 numero: `BL-${app.uid_visible || app.id.slice(0, 8)}`,
                 notes: '',
+                signature: app.signature_client || undefined,
                }, (config || {}) as any)
               window.open(URL.createObjectURL(blob))
             }}>
@@ -244,6 +253,23 @@ export function AppareilDetailPage() {
           </div>
         )}
       </div>
+
+      <Modal open={showSignature} onClose={() => setShowSignature(false)} title="Signature du client">
+        <p className="text-sm text-gray-500 mb-4">Le client doit signer ci-dessous pour confirmer la livraison.</p>
+        <SignaturePad
+          onConfirm={async (dataUrl) => {
+            await supabase.from('appareils').update({
+              statut: 'livre',
+              signature_client: dataUrl,
+              statut_detail: 'livre_avec_signature',
+            }).eq('id', app.id)
+            setApp((prev: any) => ({ ...prev, statut: 'livre', signature_client: dataUrl, statut_detail: 'livre_avec_signature' }))
+            setShowSignature(false)
+            setActionMsg('Livré avec signature')
+          }}
+          onCancel={() => setShowSignature(false)}
+        />
+      </Modal>
 
       {/* Billing section */}
       <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/50 p-6 space-y-4">

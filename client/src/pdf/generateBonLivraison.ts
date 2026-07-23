@@ -9,6 +9,7 @@ interface BonLivraisonData {
   date_livraison: string
   numero: string
   notes: string
+  signature?: string
 }
 
 function drawAppareilCard(doc: jsPDF, appareil: Appareil, y: number): number {
@@ -147,6 +148,9 @@ export async function generateBonLivraisonPdf(data: BonLivraisonData, settings: 
   doc.line(M + 13, y + 9, M + colW, y + 9)
   doc.line(M + 14, y + 14, M + colW, y + 14)
   doc.line(M, y + 28, M + colW, y + 28)
+  if (data.signature) {
+    try { doc.addImage(data.signature, 'PNG', M + 2, y + 15, colW - 4, 16) } catch (_) {}
+  }
 
   doc.setFont(FONT, 'normal')
   doc.setFontSize(7.5)

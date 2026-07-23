@@ -353,12 +353,13 @@ export function initDb(): Promise<void> {
 }
 
 function migrateAppareilsStatut(): void {
+  try { db.run("ALTER TABLE appareils ADD COLUMN signature_client TEXT DEFAULT ''"); } catch (_) {}
   try {
     db.run("UPDATE appareils SET statut = 'disponible' WHERE id = -1");
   } catch (_) {
     db.exec('PRAGMA ignore_check_constraints = ON');
     const data = db.prepare('SELECT * FROM appareils').all();
-    const cols = ['id','uid_interne','uid_visible','client_id','type','marque','modele','numero_serie','code_imei','mot_de_passe','accessoires','description_defaut','etat_esthetique','statut','QR_code_genere','etiquette_genere','photos','cree_le','modifie_le','couleur','statut_detail'];
+    const cols = ['id','uid_interne','uid_visible','client_id','type','marque','modele','numero_serie','code_imei','mot_de_passe','accessoires','description_defaut','etat_esthetique','statut','QR_code_genere','etiquette_genere','photos','cree_le','modifie_le','couleur','statut_detail','signature_client'];
     db.run('DROP TABLE IF EXISTS appareils_mig');
     db.run(`CREATE TABLE appareils_mig (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -376,6 +377,7 @@ function migrateAppareilsStatut(): void {
       etat_esthetique TEXT,
       couleur TEXT DEFAULT '',
       statut_detail TEXT DEFAULT '',
+      signature_client TEXT DEFAULT '',
       statut TEXT DEFAULT 'disponible' CHECK(statut IN ('disponible','attribue','recu','diagnostic','validation_client','reparation_autorisee','attente_pieces','en_reparation','test','pret','livre','non_reparable','restitue','archive')),
       QR_code_genere INTEGER DEFAULT 0,
       etiquette_genere INTEGER DEFAULT 0,
