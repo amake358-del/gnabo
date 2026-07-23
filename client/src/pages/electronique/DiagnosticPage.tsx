@@ -4,7 +4,7 @@ import { supabase } from '../../services/supabase'
 import { Button } from '../../components/ui/Button'
 import { Input } from '../../components/ui/Input'
 import { LoadingSpinner } from '../../components/ui/LoadingSpinner'
-import { ClipboardList, ArrowLeft, Save, AlertTriangle, FileText } from 'lucide-react'
+import { ClipboardList, ArrowLeft, Save, AlertTriangle, FileText, Send, Wrench } from 'lucide-react'
 
 export function DiagnosticPage() {
   const { appareilId } = useParams<{ appareilId: string }>()
@@ -13,7 +13,9 @@ export function DiagnosticPage() {
   const [diagnostic, setDiagnostic] = useState<any | null>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
+  const [transitioning, setTransitioning] = useState(false)
   const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
   const [config, setConfig] = useState<any>({ company_name: '', currency: 'GNF' })
   const [form, setForm] = useState({
     diagnostic: '', cause: '', tests: '', pieces_necessaires: '',
@@ -73,7 +75,7 @@ export function DiagnosticPage() {
 
   const handleSubmit = async () => {
     if (!appareilId) return
-    setSaving(true); setError('')
+    setSaving(true); setError(''); setSuccess('')
     try {
       if (diagnostic) {
         const { error: updateError } = await supabase.from('diagnostics').update({
@@ -93,11 +95,25 @@ export function DiagnosticPage() {
           observations: form.observations,
         })
         if (createError) throw createError
+        await supabase.from('appareils').update({ statut: 'diagnostic', modifie_le: new Date().toISOString() }).eq('id', appareilId)
       }
-      navigate(`/electronique/appareils/${appareilId}`)
+      const { data: refreshed } = await supabase.from('diagnostics').select('*').eq('appareil_id', appareilId).maybeSingle()
+      if (refreshed) setDiagnostic(refreshed)
+      setSuccess('Diagnostic enregistré')
     } catch (err: any) {
       setError(err.message || 'Erreur lors de l\'enregistrement')
     } finally { setSaving(false) }
+  }
+
+  const transitionStatut = async (statut: string) => {
+    if (!appareilId) return
+    setTransitioning(true); setError('')
+    try {
+      await supabase.from('appareils').update({ statut, modifie_le: new Date().toISOString() }).eq('id', appareilId)
+      navigate(`/electronique/appareils/${appareilId}`)
+    } catch (err: any) {
+      setError(err.message || 'Erreur')
+    } finally { setTransitioning(false) }
   }
 
   if (loading) return <div className="flex justify-center py-12"><LoadingSpinner /></div>
@@ -146,6 +162,7 @@ export function DiagnosticPage() {
         </div>
 
         {error && <p className="text-sm text-red-500 flex items-center gap-1"><AlertTriangle size={14} /> {error}</p>}
+        {success && <p className="text-sm text-green-500">{success}</p>}
 
         <div className="flex gap-3 pt-2">
           <Button onClick={handleSubmit} disabled={saving}>
@@ -170,6 +187,21 @@ export function DiagnosticPage() {
           )}
         </div>
       </div>
+
+      {diagnostic && !['validation_client', 'reparation_autorisee', 'attente_pieces', 'en_reparation', 'test', 'pret', 'livre', 'archive'].includes(appareil.statut) && (
+        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700/50 p-6 space-y-3">
+          <h3 className="font-semibold text-sm text-gray-500 uppercase tracking-wider">Prochaines étapes</h3>
+          <div className="flex gap-3">
+            <Button onClick={() => transitionStatut('validation_client')} disabled={transitioning}>
+              <Send size={16} /> Soumettre au client
+            </Button>
+            <Button onClick={() => transitionStatut('reparation_autorisee')} disabled={transitioning}>
+              <Wrench size={16} /> Passer en réparation
+            </Button>
+          </div>
+          <p className="text-xs text-gray-400">Soumettre = attendre validation client. Passer en réparation = commencer directement.</p>
+        </div>
+      )}
     </div>
   )
 }
