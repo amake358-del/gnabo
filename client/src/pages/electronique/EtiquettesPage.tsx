@@ -88,18 +88,27 @@ export function EtiquettesPage() {
     setBatchLoading(true)
     setBatchResult([])
     try {
-      const res = await supabase.functions.invoke('batch-etiquettes', {
-        body: { prefix, debut: parseInt(debut || '1'), quantite: parseInt(quantite || '10') }
-      }).catch(() => null)
-
-      if (res?.data?.uids) {
-        setBatchResult(res.data.uids)
-        setMessage(`${res.data.generes} étiquettes créées`)
-        await fetchAppareils()
-      } else {
-        setMessage('API batch non disponible')
+      const p = prefix.toUpperCase().replace(/[^A-Z0-9_-]/g, '') || 'EL'
+      const start = Math.max(1, parseInt(debut || '1'))
+      const count = Math.min(Math.max(1, parseInt(quantite || '10')), 500)
+      const { data: firstClient } = await supabase.from('clients').select('id').limit(1).maybeSingle()
+      if (!firstClient) { setMessage('Ajoutez d\'abord un client'); setBatchLoading(false); return }
+      const ids: string[] = []
+      const rows: any[] = []
+      for (let i = 0; i < count; i++) {
+        const uid = `${p}-${String(start + i).padStart(6, '0')}`
+        const { data: existing } = await supabase.from('appareils').select('id').eq('uid_visible', uid).maybeSingle()
+        if (existing) continue
+        const interne = `${uid}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`
+        rows.push({ uid_interne: interne, uid_visible: uid, type: 'etiquette', marque: 'Pré-imprimée', modele: 'Étiquette', statut: 'disponible', client_id: firstClient.id })
+        ids.push(uid)
       }
-    } catch (err) { setMessage('Erreur batch') }
+      if (rows.length > 0) {
+        const { error } = await supabase.from('appareils').insert(rows)
+        if (!error) { setMessage(`${rows.length} étiquettes créées`); setBatchResult(ids); await fetchAppareils() }
+        else setMessage('Erreur: ' + error.message)
+      } else setMessage('Tous les UIDs existent déjà')
+    } catch (err: any) { setMessage(err?.message || 'Erreur batch') }
     finally { setBatchLoading(false) }
   }
 
